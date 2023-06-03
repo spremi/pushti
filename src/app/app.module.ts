@@ -28,6 +28,7 @@ import { HomeComponent } from '@routes/home/home.component';
 import { CertComponent } from '@routes/cert/cert.component';
 import { PdfComponent } from '@routes/pdf/pdf.component';
 import { AboutComponent } from '@routes/about/about.component';
+import { LicenseComponent } from '@routes/license/license.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -38,7 +39,8 @@ import { AppComponent } from './app.component';
     HomeComponent,
     CertComponent,
     PdfComponent,
-    AboutComponent
+    AboutComponent,
+    LicenseComponent
   ],
   imports: [
     BrowserModule,
