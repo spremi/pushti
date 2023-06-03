@@ -26,6 +26,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { HomeComponent } from '@routes/home/home.component';
 import { CertComponent } from '@routes/cert/cert.component';
+import { PdfComponent } from '@routes/pdf/pdf.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -34,7 +35,8 @@ import { AppComponent } from './app.component';
   declarations: [
     AppComponent,
     HomeComponent,
-    CertComponent
+    CertComponent,
+    PdfComponent
   ],
   imports: [
     BrowserModule,
