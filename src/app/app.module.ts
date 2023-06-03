@@ -31,6 +31,8 @@ import { AboutComponent } from '@routes/about/about.component';
 import { LicenseComponent } from '@routes/license/license.component';
 import { SettingsComponent } from '@routes/settings/settings.component';
 
+import { HeaderComponent } from '@parts/header/header.component';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -42,7 +44,8 @@ import { AppComponent } from './app.component';
     PdfComponent,
     AboutComponent,
     LicenseComponent,
-    SettingsComponent
+    SettingsComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
