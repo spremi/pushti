@@ -33,7 +33,11 @@
               "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.sass"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "ipaddr.js",
+              "pvtsutils"
+            ]
           },
           "configurations": {
             "production": {
