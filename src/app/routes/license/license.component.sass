@@ -1,0 +1,55 @@
+\:host
+  display: flex
+  flex-direction: column
+
+  height: 100%
+  width: 100%
+
+  box-sizing: border-box
+
+  font-family: 'Fira Code', monospace
+  font-weight: 500
+
+  user-select: none
+
+  .content
+    display: flex
+    flex-direction: column
+
+    overflow: hidden
+
+    padding: 16px
+
+    .content-area
+      margin: 16px 0
+      overflow-y: auto
+
+  p
+    margin: 8px 0
+    text-align: justify
+
+    &.copy
+      font-size: 16px
+      font-weight: 600
+
+      span:first-child
+        color: #2196f3
+
+      span:nth-child(2)
+        color: #ff5722
+
+    &.info
+      margin: 8px 0 32px 0
+
+  ol
+    margin: 8px 0
+
+  li
+    margin: 8px 0
+    text-align: justify
+
+  .title
+    line-height: 32px
+
+    font-size: 20px
+    font-weight: 600
