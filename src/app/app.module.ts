@@ -35,6 +35,8 @@ import { HeaderComponent } from '@parts/header/header.component';
 import { FooterComponent } from '@parts/footer/footer.component';
 import { BodyComponent } from '@parts/body/body.component';
 
+import { IconService } from '@services/icon.service';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -71,4 +73,8 @@ import { AppComponent } from './app.component';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(private iconSvc: IconService) {
+    this.iconSvc.register();
+  }
+}
