@@ -33,6 +33,7 @@ import { SettingsComponent } from '@routes/settings/settings.component';
 
 import { HeaderComponent } from '@parts/header/header.component';
 import { FooterComponent } from '@parts/footer/footer.component';
+import { BodyComponent } from '@parts/body/body.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -47,7 +48,8 @@ import { AppComponent } from './app.component';
     LicenseComponent,
     SettingsComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    BodyComponent
   ],
   imports: [
     BrowserModule,
