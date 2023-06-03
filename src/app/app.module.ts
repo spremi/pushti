@@ -34,6 +34,7 @@ import { SettingsComponent } from '@routes/settings/settings.component';
 import { HeaderComponent } from '@parts/header/header.component';
 import { FooterComponent } from '@parts/footer/footer.component';
 import { BodyComponent } from '@parts/body/body.component';
+import { IconLinkComponent } from '@parts/icon-link/icon-link.component';
 
 import { IconService } from '@services/icon.service';
 
@@ -51,7 +52,8 @@ import { AppComponent } from './app.component';
     SettingsComponent,
     HeaderComponent,
     FooterComponent,
-    BodyComponent
+    BodyComponent,
+    IconLinkComponent
   ],
   imports: [
     BrowserModule,
