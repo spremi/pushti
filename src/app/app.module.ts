@@ -24,6 +24,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
+import { FileDropDirective } from '@dictums/file-drop.directive';
+
 import { ToHexPipe } from '@pipes/to-hex.pipe';
 import { ToStrPipe } from '@pipes/to-str.pipe';
 
@@ -59,6 +61,7 @@ import { AppComponent } from './app.component';
     IconLinkComponent,
     ToHexPipe,
     ToStrPipe,
+    FileDropDirective,
   ],
   imports: [
     BrowserModule,
