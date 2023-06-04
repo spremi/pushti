@@ -24,6 +24,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
+import { ToHexPipe } from '@pipes/to-hex.pipe';
+
 import { HomeComponent } from '@routes/home/home.component';
 import { CertComponent } from '@routes/cert/cert.component';
 import { PdfComponent } from '@routes/pdf/pdf.component';
@@ -53,7 +55,8 @@ import { AppComponent } from './app.component';
     HeaderComponent,
     FooterComponent,
     BodyComponent,
-    IconLinkComponent
+    IconLinkComponent,
+    ToHexPipe,
   ],
   imports: [
     BrowserModule,
