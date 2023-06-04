@@ -40,6 +40,8 @@ import { HeaderComponent } from '@parts/header/header.component';
 import { FooterComponent } from '@parts/footer/footer.component';
 import { BodyComponent } from '@parts/body/body.component';
 import { IconLinkComponent } from '@parts/icon-link/icon-link.component';
+
+import { InputPemComponent } from '@parts/input-pem/input-pem.component';
 import { ShowVersionComponent } from '@parts/show-version/show-version.component';
 import { ShowSerialNumComponent } from '@parts/show-serial-num/show-serial-num.component';
 import { ShowEntityComponent } from '@parts/show-entity/show-entity.component';
@@ -104,6 +106,7 @@ import { AppComponent } from './app.component';
     ShowExtnAuthorityInfoAccessComponent,
     ShowExtnCrlDistroPointComponent,
     ShowExtnNsCommentComponent,
+    InputPemComponent,
   ],
   imports: [
     BrowserModule,
