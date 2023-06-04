@@ -54,6 +54,7 @@ import { ShowExtnDefaultComponent } from '@parts/show-extn-default/show-extn-def
 import { ShowExtnBasicConstraintsComponent } from '@parts/show-extn-basic-constraints/show-extn-basic-constraints.component';
 import { ShowExtnKeyUsageComponent } from '@parts/show-extn-key-usage/show-extn-key-usage.component';
 import { ShowExtnExtendedKeyUsageComponent } from '@parts/show-extn-extended-key-usage/show-extn-extended-key-usage.component';
+import { ShowExtnSubjectAltNameComponent } from '@parts/show-extn-subject-alt-name/show-extn-subject-alt-name.component';
 
 import { IconService } from '@services/icon.service';
 
@@ -90,6 +91,7 @@ import { AppComponent } from './app.component';
     ShowExtnBasicConstraintsComponent,
     ShowExtnKeyUsageComponent,
     ShowExtnExtendedKeyUsageComponent,
+    ShowExtnSubjectAltNameComponent,
   ],
   imports: [
     BrowserModule,
