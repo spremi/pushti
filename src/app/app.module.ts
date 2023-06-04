@@ -44,6 +44,7 @@ import { ShowVersionComponent } from '@parts/show-version/show-version.component
 import { ShowSerialNumComponent } from '@parts/show-serial-num/show-serial-num.component';
 import { ShowEntityComponent } from '@parts/show-entity/show-entity.component';
 import { ShowValidityComponent } from '@parts/show-validity/show-validity.component';
+import { ShowAlgorithmIdComponent } from '@parts/show-algorithm-id/show-algorithm-id.component';
 
 import { IconService } from '@services/icon.service';
 
@@ -70,6 +71,7 @@ import { AppComponent } from './app.component';
     ShowSerialNumComponent,
     ShowEntityComponent,
     ShowValidityComponent,
+    ShowAlgorithmIdComponent,
   ],
   imports: [
     BrowserModule,
