@@ -57,6 +57,7 @@ import { ShowExtnExtendedKeyUsageComponent } from '@parts/show-extn-extended-key
 import { ShowExtnSubjectAltNameComponent } from '@parts/show-extn-subject-alt-name/show-extn-subject-alt-name.component';
 import { ShowExtnIssuerAltNameComponent } from '@parts/show-extn-issuer-alt-name/show-extn-issuer-alt-name.component';
 import { ShowExtnAuthorityKeyIdComponent } from '@parts/show-extn-authority-key-id/show-extn-authority-key-id.component';
+import { ShowExtnCertPolicyComponent } from '@parts/show-extn-cert-policy/show-extn-cert-policy.component';
 
 import { IconService } from '@services/icon.service';
 
@@ -96,6 +97,7 @@ import { AppComponent } from './app.component';
     ShowExtnSubjectAltNameComponent,
     ShowExtnIssuerAltNameComponent,
     ShowExtnAuthorityKeyIdComponent,
+    ShowExtnCertPolicyComponent,
   ],
   imports: [
     BrowserModule,
