@@ -42,6 +42,7 @@ import { BodyComponent } from '@parts/body/body.component';
 import { IconLinkComponent } from '@parts/icon-link/icon-link.component';
 import { ShowVersionComponent } from '@parts/show-version/show-version.component';
 import { ShowSerialNumComponent } from '@parts/show-serial-num/show-serial-num.component';
+import { ShowEntityComponent } from '@parts/show-entity/show-entity.component';
 
 import { IconService } from '@services/icon.service';
 
@@ -66,6 +67,7 @@ import { AppComponent } from './app.component';
     FileDropDirective,
     ShowVersionComponent,
     ShowSerialNumComponent,
+    ShowEntityComponent,
   ],
   imports: [
     BrowserModule,
