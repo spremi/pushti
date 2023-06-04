@@ -41,6 +41,7 @@ import { FooterComponent } from '@parts/footer/footer.component';
 import { BodyComponent } from '@parts/body/body.component';
 import { IconLinkComponent } from '@parts/icon-link/icon-link.component';
 import { ShowVersionComponent } from '@parts/show-version/show-version.component';
+import { ShowSerialNumComponent } from '@parts/show-serial-num/show-serial-num.component';
 
 import { IconService } from '@services/icon.service';
 
@@ -64,6 +65,7 @@ import { AppComponent } from './app.component';
     ToStrPipe,
     FileDropDirective,
     ShowVersionComponent,
+    ShowSerialNumComponent,
   ],
   imports: [
     BrowserModule,
