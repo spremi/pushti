@@ -25,6 +25,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { ToHexPipe } from '@pipes/to-hex.pipe';
+import { ToStrPipe } from '@pipes/to-str.pipe';
 
 import { HomeComponent } from '@routes/home/home.component';
 import { CertComponent } from '@routes/cert/cert.component';
@@ -57,6 +58,7 @@ import { AppComponent } from './app.component';
     BodyComponent,
     IconLinkComponent,
     ToHexPipe,
+    ToStrPipe,
   ],
   imports: [
     BrowserModule,
