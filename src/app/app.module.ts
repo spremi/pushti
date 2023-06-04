@@ -49,6 +49,7 @@ import { ShowSubjectPublicKeyComponent } from '@parts/show-subject-public-key/sh
 import { ShowFingerprintsComponent } from '@parts/show-fingerprints/show-fingerprints.component';
 import { ShowUniqueIdComponent } from '@parts/show-unique-id/show-unique-id.component';
 import { ShowSignatureComponent } from '@parts/show-signature/show-signature.component';
+import { ShowExtensionsComponent } from '@parts/show-extensions/show-extensions.component';
 
 import { IconService } from '@services/icon.service';
 
@@ -80,6 +81,7 @@ import { AppComponent } from './app.component';
     ShowFingerprintsComponent,
     ShowUniqueIdComponent,
     ShowSignatureComponent,
+    ShowExtensionsComponent,
   ],
   imports: [
     BrowserModule,
