@@ -11,12 +11,17 @@
 import { Overlay, OverlayConfig, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { ElementRef, Injectable, inject } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { FileDropStatus } from '@models/file-drop-status';
 import { DropZoneComponent } from '@parts/drop-zone/drop-zone.component';
+import { take } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DropOverlayService {
+
+  private snackBar = inject(MatSnackBar);
 
   private overlay = inject(Overlay);
   private overlayRef!: OverlayRef;
@@ -55,7 +60,16 @@ export class DropOverlayService {
     this.overlayRef = this.overlay.create(overlayConfig);
 
     const dropZonePortal = new ComponentPortal(DropZoneComponent);
-    this.overlayRef.attach(dropZonePortal);
+    const compRef = this.overlayRef.attach(dropZonePortal);
+
+    //
+    // Subscribe to status emitted by 'DropZoneComponent'
+    //
+    compRef.instance.status.pipe(take(1)).subscribe((status: FileDropStatus) => {
+      if (status.code < 0) {
+        this.snackBar.open(status.desc);
+      }
+    })
   }
 
   public hide(): void {
