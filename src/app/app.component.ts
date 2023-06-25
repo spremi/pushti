@@ -8,7 +8,8 @@
 // (c) Copyright 2023 Sanjeev Premi.
 //
 
-import { Component } from '@angular/core';
+import { Component, ElementRef, HostListener, ViewChild, inject } from '@angular/core';
+import { DropOverlayService } from '@services/drop-overlay.service';
 
 import { PreviousRouteService } from '@services/previous-route.service';
 
@@ -20,6 +21,24 @@ import { PreviousRouteService } from '@services/previous-route.service';
 export class AppComponent {
   title = 'pushti-web';
 
+  @ViewChild('main', { read: ElementRef })
+  private body!: ElementRef;
+
+  private dropOverlay = inject(DropOverlayService);
+
+  @HostListener('dragenter', ['$event'])
+  onDragEnter(event: DragEvent) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    this.showDropZone();
+  }
+
   constructor(private prevRouteSvc: PreviousRouteService) {
+  }
+
+  private showDropZone(): void {
+
+    this.dropOverlay.show(this.body);
   }
 }
