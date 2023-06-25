@@ -12,7 +12,8 @@ import { Overlay, OverlayConfig, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { ElementRef, Injectable, inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { FileDropStatus } from '@models/file-drop-status';
+import { Router } from '@angular/router';
+import { FileDropCode, FileDropStatus, FileDropType } from '@models/file-drop-status';
 import { DropZoneComponent } from '@parts/drop-zone/drop-zone.component';
 import { take } from 'rxjs';
 
@@ -24,6 +25,8 @@ export class DropOverlayService {
   private snackBar = inject(MatSnackBar);
 
   private overlay = inject(Overlay);
+  private router = inject(Router);
+
   private overlayRef!: OverlayRef;
 
   private posTop = '0px';
@@ -74,11 +77,17 @@ export class DropOverlayService {
     // Subscribe to status emitted by 'DropZoneComponent'
     //
     compRef.instance.status.pipe(take(1)).subscribe((status: FileDropStatus) => {
-      if (status.code < 0) {
-        this.snackBar.open(status.desc);
-      }
+      this.snackBar.open(status.desc);
 
       this.hide();
+
+      if (status.code === FileDropCode.Success) {
+        if (status.type === FileDropType.FileCertificate) {
+          this.router.navigate(['/cert']);
+        } else {
+          this.router.navigate(['/pdf']);
+        }
+      }
     })
   }
 
