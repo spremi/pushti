@@ -42,6 +42,7 @@ import { HeaderComponent } from '@parts/header/header.component';
 import { FooterComponent } from '@parts/footer/footer.component';
 import { BodyComponent } from '@parts/body/body.component';
 import { IconLinkComponent } from '@parts/icon-link/icon-link.component';
+import { DropZoneComponent } from '@parts/drop-zone/drop-zone.component';
 
 import { InputPemComponent } from '@parts/input-pem/input-pem.component';
 import { ShowVersionComponent } from '@parts/show-version/show-version.component';
@@ -109,6 +110,7 @@ import { AppComponent } from './app.component';
     ShowExtnCrlDistroPointComponent,
     ShowExtnNsCommentComponent,
     InputPemComponent,
+    DropZoneComponent,
   ],
   imports: [
     BrowserModule,
