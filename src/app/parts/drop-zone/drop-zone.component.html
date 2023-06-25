@@ -1,1 +1,8 @@
-<p>drop-zone works!</p>
+<!--
+  The function onFilesDropped() is not bound to the event 'onFilesDrop'
+  when ng-container is used.
+  It is almost mandatory now to add a child element
+-->
+<div class="bucket" spFileDrop (onFilesDrop)="onFilesDropped($event)">
+  <div class="prompt">{{ prompt }}</div>
+</div>
