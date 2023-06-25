@@ -69,6 +69,8 @@ export class DropOverlayService {
       if (status.code < 0) {
         this.snackBar.open(status.desc);
       }
+
+      this.hide();
     })
   }
 
