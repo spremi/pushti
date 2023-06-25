@@ -23,7 +23,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { FileDropDirective } from '@dictums/file-drop.directive';
@@ -130,7 +130,14 @@ import { AppComponent } from './app.component';
     MatSnackBarModule,
     MatToolbarModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,
+      useValue: {
+        duration: 2500
+      }
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
