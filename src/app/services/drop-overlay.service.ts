@@ -31,10 +31,16 @@ export class DropOverlayService {
   private height = '0px';
   private width = '0px';
 
+  private showing = false;
+
   constructor() {
   }
 
   public show(connectedTo: ElementRef): void {
+    if (this.showing) {
+      return;
+    }
+
     const bodyRect: DOMRect = connectedTo.nativeElement.getBoundingClientRect();
 
     //
@@ -62,6 +68,8 @@ export class DropOverlayService {
     const dropZonePortal = new ComponentPortal(DropZoneComponent);
     const compRef = this.overlayRef.attach(dropZonePortal);
 
+    this.showing = true;
+
     //
     // Subscribe to status emitted by 'DropZoneComponent'
     //
@@ -76,6 +84,8 @@ export class DropOverlayService {
 
   public hide(): void {
     this.overlayRef.dispose();
+    this.showing = false;
+
   }
 
   public getTop(): string {
