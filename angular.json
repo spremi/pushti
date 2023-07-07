@@ -100,6 +100,7 @@
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
               "@angular/cdk/overlay-prebuilt.css",
+              "src/fonts.sass",
               "src/styles.sass"
             ],
             "scripts": []
