@@ -1,1 +1,26 @@
-<p>show-validity works!</p>
+<sp-box title="VALIDITY" (copy)="onCopy()">
+  <ng-container *ngIf="value; then validity_ok else validity_err"></ng-container>
+
+  <ng-template #validity_ok>
+    <div class="attribute">
+      <div class="attr-name">Not Before</div>
+      <div class="attr-value">{{ notBefore.toUTCString() }}</div>
+    </div>
+    <div class="attribute">
+      <div class="attr-name"></div>
+      <div class="attr-value">{{ notBefore.toString() }}</div>
+    </div>
+    <div class="attribute">
+      <div class="attr-name">Not After</div>
+      <div class="attr-value">{{ notAfter.toUTCString() }}</div>
+    </div>
+    <div class="attribute">
+      <div class="attr-name"></div>
+      <div class="attr-value">{{ notAfter.toString() }}</div>
+    </div>
+  </ng-template>
+
+  <ng-template #validity_err>
+  ...
+  </ng-template>
+</sp-box>
