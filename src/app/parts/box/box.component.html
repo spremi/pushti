@@ -1,1 +1,11 @@
-<p>box works!</p>
+<div class="box-head">
+  <span class="title">{{title}}</span>
+  <span class="oid">{{oid}}</span>
+  <span class="icon">
+    <mat-icon (click)="onCopyContent()">content_copy</mat-icon>
+  </span>
+</div>
+
+<div class="box-content">
+  <ng-content></ng-content>
+</div>
