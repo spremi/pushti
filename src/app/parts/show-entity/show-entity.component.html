@@ -1,1 +1,34 @@
-<p>show-entity works!</p>
+<sp-box title="{{ title }}" (copy)="onCopy()">
+  <ng-container *ngIf="value; then entity_ok else entity_err"></ng-container>
+
+  <ng-template #entity_ok>
+    <div class="attribute" *ngIf="rdn['CN']">
+      <div class="attr-name">Common Name</div>
+      <div class="attr-value">{{ rdn['CN'] }}</div>
+    </div>
+    <div class="attribute" *ngIf="rdn['O']">
+      <div class="attr-name">Organization</div>
+      <div class="attr-value">{{ rdn['O'] }}</div>
+    </div>
+    <div class="attribute" *ngIf="rdn['OU']">
+      <div class="attr-name">Organization Unit</div>
+      <div class="attr-value">{{ rdn['OU'] }}</div>
+    </div>
+    <div class="attribute" *ngIf="rdn['C']">
+      <div class="attr-name">Country</div>
+      <div class="attr-value">{{ rdn['C'] }}</div>
+    </div>
+    <div class="attribute" *ngIf="rdn['ST']">
+      <div class="attr-name">State</div>
+      <div class="attr-value">{{ rdn['ST'] }}</div>
+    </div>
+    <div class="attribute" *ngIf="rdn['L']">
+      <div class="attr-name">Locality</div>
+      <div class="attr-value">{{ rdn['L'] }}</div>
+    </div>
+  </ng-template>
+
+  <ng-template #entity_err>
+  ...
+  </ng-template>
+</sp-box>
