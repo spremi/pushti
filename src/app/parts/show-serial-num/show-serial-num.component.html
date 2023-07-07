@@ -1,1 +1,13 @@
-<p>show-serial-num works!</p>
+<sp-box title="SERIAL NUMBER" (copy)="onCopy()">
+
+  <ng-container *ngIf="serialNumber && serialNumber.length > 0; else serial_err">
+    <div class="attribute">
+      <div class="attr-value" [innerHTML]="serialNumber | toHex"></div>
+    </div>
+    </ng-container>
+
+  <ng-template #serial_err>
+    ...
+  </ng-template>
+
+</sp-box>
