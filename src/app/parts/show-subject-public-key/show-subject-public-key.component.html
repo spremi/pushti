@@ -1,1 +1,45 @@
-<p>show-subject-public-key works!</p>
+<sp-box title="SUBJECT PUBLIC KEY INFO" (copy)="onCopy()">
+  <ng-container *ngIf="value; then keyinfo_ok else keyinfo_err"></ng-container>
+
+  <ng-template #keyinfo_ok>
+    <div class="attribute">
+      <div class="attr-name">Algorithm</div>
+      <div class="attr-value">{{ algorithm }}</div>
+    </div>
+
+    <ng-container *ngIf="rsaKey !== null">
+      <div class="attribute">
+        <div class="attr-name">Modulus</div>
+        <div class="attr-value">{{ rsaKey.size }}</div>
+      </div>
+      <div class="attribute">
+        <div class="attr-name"></div>
+        <div class="attr-value" [innerHTML]="rsaKey.n| toHex"></div>
+      </div>
+      <div class="attribute">
+        <div class="attr-name">Exponent</div>
+        <div class="attr-value">{{ rsaKey.e }}</div>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="ecKey !== null">
+      <div class="attribute">
+        <div class="attr-name">Curve</div>
+        <div class="attr-value">{{ ecKey.curve }}</div>
+      </div>
+      <div class="attribute">
+        <div class="attr-name">X</div>
+        <div class="attr-value"  [innerHTML]="ecKey.x | toHex"></div>
+      </div>
+      <div class="attribute">
+        <div class="attr-name">Y</div>
+        <div class="attr-value"  [innerHTML]="ecKey.y | toHex"></div>
+      </div>
+    </ng-container>
+
+  </ng-template>
+
+  <ng-template #keyinfo_err>
+  ...
+  </ng-template>
+</sp-box>
