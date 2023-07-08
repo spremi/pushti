@@ -32,6 +32,9 @@
     <sp-show-serial-num
       [value]="certificate.getSerialNumber()">
     </sp-show-serial-num>
+    <sp-show-validity
+      [value]="certificate.getValidity()">
+    </sp-show-validity>
   </ng-container>
 
   <sp-input-pem *ngIf="certFile !== ''"></sp-input-pem>
