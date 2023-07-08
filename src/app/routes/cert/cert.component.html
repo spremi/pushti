@@ -29,6 +29,9 @@
     <sp-show-version
       [value]="certificate.getVersion()">
     </sp-show-version>
+    <sp-show-serial-num
+      [value]="certificate.getSerialNumber()">
+    </sp-show-serial-num>
   </ng-container>
 
   <sp-input-pem *ngIf="certFile !== ''"></sp-input-pem>
