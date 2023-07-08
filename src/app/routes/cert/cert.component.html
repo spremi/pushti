@@ -35,6 +35,10 @@
     <sp-show-validity
       [value]="certificate.getValidity()">
     </sp-show-validity>
+    <sp-show-entity
+      title="ISSUER"
+      [value]="certificate.getIssuer()">
+    </sp-show-entity>
   </ng-container>
 
   <sp-input-pem *ngIf="certFile !== ''"></sp-input-pem>
