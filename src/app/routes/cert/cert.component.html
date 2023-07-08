@@ -43,6 +43,10 @@
       title="SUBJECT"
       [value]="certificate.getSubject()">
     </sp-show-entity>
+    <sp-show-subject-public-key
+      title="SUBJECT PUBLIC KEY INFO"
+      [value]="certificate.getSubjectPublicKeyInfo()">
+    </sp-show-subject-public-key>
   </ng-container>
 
   <sp-input-pem *ngIf="certFile !== ''"></sp-input-pem>
