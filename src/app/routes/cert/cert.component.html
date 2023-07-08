@@ -25,5 +25,11 @@
 </mat-toolbar>
 
 <div class="parse-area">
-Placeholder for showing certificate information.
+  <ng-container *ngIf="certificate">
+    <sp-show-version
+      [value]="certificate.getVersion()">
+    </sp-show-version>
+  </ng-container>
+
+  <sp-input-pem *ngIf="certFile !== ''"></sp-input-pem>
 </div>
