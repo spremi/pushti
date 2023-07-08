@@ -8,19 +8,23 @@
 // (c) Copyright 2023 Sanjeev Premi.
 //
 
-import { Component, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { SpX509Certificate } from '@models/sp-x509-certificate';
+import { CertificateParserService } from '@services/certificate-parser.service';
 import { FileStoreService } from '@services/file-store.service';
+import { Subscription, distinctUntilChanged, filter } from 'rxjs';
 
 @Component({
   selector: 'sp-cert',
   templateUrl: './cert.component.html',
   styleUrls: ['./cert.component.sass']
 })
-export class CertComponent {
+export class CertComponent implements OnInit, OnDestroy {
 
   private fileStore = inject(FileStoreService);
   private snackBar = inject(MatSnackBar);
+  private certParser = inject(CertificateParserService);
 
   readonly ACCEPT_EXTENSIONS = [
     '.ber',
@@ -32,6 +36,27 @@ export class CertComponent {
   ].join(',');
 
   certFile = '';
+  certificate!: SpX509Certificate | null;
+
+  private update$!: Subscription;
+
+  ngOnInit(): void {
+    this.update$ = this.certParser.updateObserver()
+      .pipe(
+        filter(v => v !== null),
+        distinctUntilChanged()
+      )
+      .subscribe(value => {
+        this.certFile = this.certParser.getName();
+        this.certificate = this.certParser.getCertificate();
+      });
+  }
+
+  ngOnDestroy(): void {
+    if (this.update$) {
+      this.update$.unsubscribe();
+    }
+  }
 
   /**
    * Handle the file select event.
@@ -68,5 +93,9 @@ export class CertComponent {
     };
 
     reader.readAsBinaryString(file);
+  }
+
+  onClear() {
+    this.fileStore.clear();
   }
 }

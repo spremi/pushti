@@ -1,6 +1,14 @@
 <mat-toolbar>
   <span>{{ certFile }}</span>
 
+  <button *ngIf="certificate"
+     mat-icon-button
+    class="clear"
+    (click)="onClear()"
+    aria-label="Clear certificate">
+    <mat-icon>close</mat-icon>
+  </button>
+
   <span class="h-spacer"></span>
 
   <input type="file" #fileInput
