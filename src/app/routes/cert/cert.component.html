@@ -1,1 +1,21 @@
-<p>cert works!</p>
+<mat-toolbar>
+  <span>{{ certFile }}</span>
+
+  <span class="h-spacer"></span>
+
+  <input type="file" #fileInput
+    class="invisible"
+    [multiple]="false"
+    [accept]="ACCEPT_EXTENSIONS"
+    (change)="onFileSelected($event)" />
+
+    <button mat-mini-fab color="accent"
+       aria-label="Upload file"
+       (click)="fileInput.click()">
+      <mat-icon>upload</mat-icon>
+    </button>
+</mat-toolbar>
+
+<div class="parse-area">
+Placeholder for showing certificate information.
+</div>
