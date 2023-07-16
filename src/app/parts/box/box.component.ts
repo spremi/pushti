@@ -18,6 +18,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class BoxComponent {
   @Input() title = '';
   @Input() oid = '';
+  @Input() extn = false;
+  @Input() extnCritical = false;
   @Output() copy = new EventEmitter<any>();
 
   onCopyContent(): void {

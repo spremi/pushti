@@ -1,10 +1,20 @@
 <div class="box-head">
   <span class="title">{{title}}</span>
-  <span class="oid">{{oid}}</span>
+  <span class="oid" *ngIf="oid !== ''">{{oid}}</span>
+
+  <span class="flags" *ngIf="extn">
+    <ng-container *ngIf="extnCritical">(C)</ng-container>
+  </span>
+
   <span class="icon">
     <mat-icon (click)="onCopyContent()">content_copy</mat-icon>
   </span>
 </div>
+
+<!-- Required to maintain visual alignment -->
+<ng-template #flag_err>
+  <span class="flags">&nbsp;</span>
+</ng-template>
 
 <div class="box-content">
   <ng-content></ng-content>
