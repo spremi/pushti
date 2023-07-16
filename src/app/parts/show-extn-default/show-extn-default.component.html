@@ -1,1 +1,11 @@
-<p>show-extn-default works!</p>
+<sp-box
+  title="Extension Not Supported"
+  [oid]="oid"
+  [extn]="true"
+  [extnCritical]="critical"
+  (copy)="onCopy()">
+
+  <div class="attribute">
+    <div class="attr-value" [innerHTML]="value | toHex"></div>
+  </div>
+</sp-box>
