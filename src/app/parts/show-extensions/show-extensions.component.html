@@ -1,3 +1,17 @@
 <sp-box title="EXTENSIONS">
-  Placeholder for extensions
+  <div class="columns" *ngFor="let extension of extensions">
+    <div [ngSwitch]="extension.getOid()">
+      <sp-show-extn-basic-constraints *ngSwitchCase="'2.5.29.19'"
+        [oid]="extension.getOid()"
+        [critical]="extension.getCritical()"
+        [value]="extension.getValue()">
+      </sp-show-extn-basic-constraints>
+
+      <sp-show-extn-default *ngSwitchDefault
+        [oid]="extension.getOid()"
+        [critical]="extension.getCritical()"
+        [value]="extension.getValue()">
+      </sp-show-extn-default>
+    </div>
+  </div>
 </sp-box>
