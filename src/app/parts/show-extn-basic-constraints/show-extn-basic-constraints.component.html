@@ -1,1 +1,12 @@
-<p>show-extn-basic-constraints works!</p>
+<sp-box
+  title="Basic Constraints"
+  [oid]="oid"
+  [extn]="true"
+  [extnCritical]="critical"
+  (copy)="onCopy()">
+
+  <div class="attribute">
+    <div class="attr-name">CA</div>
+    <div class="attr-value">{{ isCA }}</div>
+  </div>
+</sp-box>
