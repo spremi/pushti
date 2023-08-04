@@ -1,1 +1,48 @@
-<p>show-extn-key-usage works!</p>
+<sp-box
+  title="Key Usage"
+  [oid]="oid"
+  [extn]="true"
+  [extnCritical]="critical"
+  (copy)="onCopy()">
+
+  <div class="attribute">
+    <div class="attr-name">Digital Signature</div>
+    <div class="attr-value">{{ keyUsage?.isDigitalSignature() }}</div>
+  </div>
+  <div class="attribute">
+    <div class="attr-name">Content Commitment<sup>*</sup></div>
+    <div class="attr-value">{{ keyUsage?.isContentCommitment() }}</div>
+  </div>
+  <div class="attribute">
+    <div class="attr-name">Key Encipherment</div>
+    <div class="attr-value">{{ keyUsage?.isKeyEncipherment() }}</div>
+  </div>
+  <div class="attribute">
+    <div class="attr-name">Data Encipherment</div>
+    <div class="attr-value">{{ keyUsage?.isDataEncipherment() }}</div>
+  </div>
+  <div class="attribute">
+    <div class="attr-name">Key Agreement</div>
+    <div class="attr-value">{{ keyUsage?.isKeyAgreement() }}</div>
+  </div>
+  <div class="attribute">
+    <div class="attr-name">Certificate Signing</div>
+    <div class="attr-value">{{ keyUsage?.isKeyCertSign() }}</div>
+  </div>
+  <div class="attribute">
+    <div class="attr-name">CRL Signing</div>
+    <div class="attr-value">{{ keyUsage?.isCrlSign() }}</div>
+  </div>
+  <div class="attribute">
+    <div class="attr-name">Encipher Only</div>
+    <div class="attr-value">{{ keyUsage?.isEncipherOnly() }}</div>
+  </div>
+  <div class="attribute">
+    <div class="attr-name">Decipher Only</div>
+    <div class="attr-value">{{ keyUsage?.isDecipherOnly() }}</div>
+  </div>
+
+  <div class="note">
+    <sup>*</sup>Also known as Non-repudiation
+  </div>
+</sp-box>
