@@ -1,1 +1,17 @@
-<p>show-extn-authority-key-id works!</p>
+<sp-box
+  title="Authority Key Identifier"
+  [oid]="oid"
+  [extn]="true"
+  [extnCritical]="critical"
+  (copy)="onCopy()">
+
+  <ng-container *ngIf="keyId && keyId.length > 0; else key_id_err">
+    <div class="attribute">
+      <div class="attr-value" [innerHTML]="keyId | toHex"></div>
+    </div>
+  </ng-container>
+
+  <ng-template #key_id_err>
+    ...
+  </ng-template>
+</sp-box>
