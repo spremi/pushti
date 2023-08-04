@@ -1,1 +1,18 @@
-<p>show-extn-extended-key-usage works!</p>
+<sp-box
+  title="Extended Key Usage"
+  [oid]="oid"
+  [extn]="true"
+  [extnCritical]="critical"
+  (copy)="onCopy()">
+
+  <ng-container *ngIf="usage && usage.length > 0; else ext_usage_err">
+    <div class="attribute" *ngFor="let purpose of usage; index as i;">
+      <div class="attr-name">({{ i + 1 }})</div>
+      <div class="attr-value">{{ purpose }}</div>
+    </div>
+  </ng-container>
+
+  <ng-template #ext_usage_err>
+    ...
+  </ng-template>
+</sp-box>
