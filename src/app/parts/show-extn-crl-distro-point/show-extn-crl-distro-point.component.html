@@ -1,1 +1,18 @@
-<p>show-extn-crl-distro-point works!</p>
+<sp-box
+  title="CRL Distribution Points"
+  [oid]="oid"
+  [extn]="true"
+  [extnCritical]="critical"
+  (copy)="onCopy()">
+
+  <ng-container *ngIf="urls && urls.length > 0; else cdp_err">
+    <div class="attribute" *ngFor="let url of urls; index as i;">
+      <div class="attr-name">({{ i + 1 }})</div>
+      <div class="attr-value">{{ url }}</div>
+    </div>
+  </ng-container>
+
+  <ng-template #cdp_err>
+    ...
+  </ng-template>
+</sp-box>
