@@ -25,6 +25,12 @@
         [value]="extension.getValue()">
       </sp-show-extn-authority-key-id>
 
+      <sp-show-extn-extended-key-usage *ngSwitchCase="'2.5.29.37'"
+        [oid]="extension.getOid()"
+        [critical]="extension.getCritical()"
+        [value]="extension.getValue()">
+      </sp-show-extn-extended-key-usage>
+
       <sp-show-extn-default *ngSwitchDefault
         [oid]="extension.getOid()"
         [critical]="extension.getCritical()"
