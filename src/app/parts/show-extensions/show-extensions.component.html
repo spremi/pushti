@@ -7,6 +7,12 @@
         [value]="extension.getValue()">
       </sp-show-extn-basic-constraints>
 
+      <sp-show-extn-crl-distro-point *ngSwitchCase="'2.5.29.31'"
+        [oid]="extension.getOid()"
+        [critical]="extension.getCritical()"
+        [value]="extension.getValue()">
+      </sp-show-extn-crl-distro-point>
+
       <sp-show-extn-default *ngSwitchDefault
         [oid]="extension.getOid()"
         [critical]="extension.getCritical()"
