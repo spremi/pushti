@@ -1,1 +1,25 @@
-<p>show-extn-cert-policy works!</p>
+<sp-box
+  title="Certificate Policy"
+  [oid]="oid"
+  [extn]="true"
+  [extnCritical]="critical"
+  (copy)="onCopy()">
+
+  <ng-container *ngIf="policies && policies.length > 0; else policy_err">
+    <div class="attribute" *ngFor="let policy of policies; index as i;">
+      <div class="attr-name">({{ i + 1 }})</div>
+      <div class="attr-value">
+        <!-- TODO: Handle other oids -->
+        <strong>{{ policy.name }}</strong>
+        <dl *ngFor="let qualifier of policy.qualifiers;">
+          <dt>{{ qualifier.name }}</dt>
+          <dd>{{ qualifier.value }}</dd>
+        </dl>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-template #policy_err>
+    ...
+  </ng-template>
+</sp-box>
