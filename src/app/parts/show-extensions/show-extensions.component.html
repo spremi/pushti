@@ -19,6 +19,12 @@
         [value]="extension.getValue()">
       </sp-show-extn-crl-distro-point>
 
+      <sp-show-extn-cert-policy *ngSwitchCase="'2.5.29.32'"
+        [oid]="extension.getOid()"
+        [critical]="extension.getCritical()"
+        [value]="extension.getValue()">
+      </sp-show-extn-cert-policy>
+
       <sp-show-extn-authority-key-id *ngSwitchCase="'2.5.29.35'"
         [oid]="extension.getOid()"
         [critical]="extension.getCritical()"
