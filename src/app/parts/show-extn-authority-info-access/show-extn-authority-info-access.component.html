@@ -1,1 +1,22 @@
-<p>show-extn-authority-info-access works!</p>
+<sp-box
+  title="Authority Information Access"
+  [oid]="oid"
+  [extn]="true"
+  [extnCritical]="critical"
+  (copy)="onCopy()">
+
+  <ng-container *ngIf="aia; else aia_err">
+    <div class="attribute" *ngFor="let item of aia; index as i;">
+      <div class="attr-name">({{ i + 1 }})</div>
+      <div class="attr-value">
+        <strong>{{ item.method }}</strong><br />
+        {{ item.location }}
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-template #aia_err>
+    ...
+  </ng-template>
+
+</sp-box>
