@@ -1,1 +1,18 @@
-<p>show-extn-subject-alt-name works!</p>
+<sp-box
+  title="Subject Alternate Name"
+  [oid]="oid"
+  [extn]="true"
+  [extnCritical]="critical"
+  (copy)="onCopy()">
+
+  <ng-container *ngIf="names.length > 0; else salt_name_err">
+    <div class="attribute" *ngFor="let name of names; index as i;">
+      <div class="attr-name">({{ i + 1 }})</div>
+      <div class="attr-value">{{ name | toStr }}</div>
+    </div>
+  </ng-container>
+
+  <ng-template #salt_name_err>
+    ...
+  </ng-template>
+</sp-box>
