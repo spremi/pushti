@@ -67,6 +67,7 @@ import { ShowExtnCertPolicyComponent } from '@parts/show-extn-cert-policy/show-e
 import { ShowExtnAuthorityInfoAccessComponent } from '@parts/show-extn-authority-info-access/show-extn-authority-info-access.component';
 import { ShowExtnCrlDistroPointComponent } from '@parts/show-extn-crl-distro-point/show-extn-crl-distro-point.component';
 import { ShowExtnNsCommentComponent } from '@parts/show-extn-ns-comment/show-extn-ns-comment.component';
+import { ShowExtnSubjectKeyIdComponent } from '@parts/show-extn-subject-key-id/show-extn-subject-key-id.component';
 
 import { IconService } from '@services/icon.service';
 
@@ -113,6 +114,7 @@ import { AppComponent } from './app.component';
     InputPemComponent,
     DropZoneComponent,
     BoxComponent,
+    ShowExtnSubjectKeyIdComponent,
   ],
   imports: [
     BrowserModule,
