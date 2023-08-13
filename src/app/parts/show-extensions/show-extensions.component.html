@@ -7,6 +7,12 @@
         [value]="extension.getValue()">
       </sp-show-extn-key-usage>
 
+      <sp-show-extn-subject-alt-name *ngSwitchCase="'2.5.29.17'"
+        [oid]="extension.getOid()"
+        [critical]="extension.getCritical()"
+        [value]="extension.getValue()">
+      </sp-show-extn-subject-alt-name>
+
       <sp-show-extn-issuer-alt-name *ngSwitchCase="'2.5.29.18'"
         [oid]="extension.getOid()"
         [critical]="extension.getCritical()"
