@@ -1,1 +1,18 @@
-<p>show-extn-subject-key-id works!</p>
+<sp-box
+  title="Subject Key Identifier"
+  [oid]="oid"
+  [extn]="true"
+  [extnCritical]="critical"
+  (copy)="onCopy()">
+
+  <ng-container *ngIf="keyId && keyId.length > 0; else sub_key_id_err">
+    <div class="attribute">
+      <div class="attr-value" [innerHTML]="keyId | toHex"></div>
+    </div>
+    </ng-container>
+
+  <ng-template #sub_key_id_err>
+    ...
+  </ng-template>
+
+</sp-box>
