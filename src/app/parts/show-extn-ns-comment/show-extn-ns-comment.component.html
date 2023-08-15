@@ -1,1 +1,11 @@
-<p>show-extn-ns-comment works!</p>
+<sp-box
+  title="Netscape Certificate Comment"
+  [oid]="oid"
+  [extn]="true"
+  [extnCritical]="critical"
+  (copy)="onCopy()">
+
+  <div class="attribute">
+    <div class="attr-value">{{ comment }}</div>
+  </div>
+</sp-box>
