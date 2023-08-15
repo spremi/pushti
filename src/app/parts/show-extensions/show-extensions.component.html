@@ -61,6 +61,12 @@
         [value]="extension.getValue()">
       </sp-show-extn-extended-key-usage>
 
+      <sp-show-extn-ns-comment *ngSwitchCase="'2.16.840.1.113730.1.13'"
+        [oid]="extension.getOid()"
+        [critical]="extension.getCritical()"
+        [value]="extension.getValue()">
+      </sp-show-extn-ns-comment>
+
       <sp-show-extn-default *ngSwitchDefault
         [oid]="extension.getOid()"
         [critical]="extension.getCritical()"
