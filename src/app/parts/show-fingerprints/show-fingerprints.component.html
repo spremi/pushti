@@ -1,1 +1,10 @@
-<p>show-fingerprints works!</p>
+<sp-box title="FINGERPRINTS" (copy)="onCopy()">
+  <div class="attribute">
+    <div class="attr-name">SHA1</div>
+    <div class="attr-value">{{ value.getSHA1() }}</div>
+  </div>
+  <div class="attribute">
+    <div class="attr-name">SHA-256</div>
+    <div class="attr-value">{{ value.getSHA256() }}</div>
+  </div>
+</sp-box>
