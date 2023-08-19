@@ -54,6 +54,10 @@
       title="FINGERPRINTS"
       [value]="certificate.getCertFingerprints()">
     </sp-show-fingerprints>
+    <sp-show-signature
+      title="SIGNATURE"
+      [value]="certificate.getCertSignature()">
+    </sp-show-signature>
   </ng-container>
 
   <sp-input-pem *ngIf="certFile !== ''"></sp-input-pem>
