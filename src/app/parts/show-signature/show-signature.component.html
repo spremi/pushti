@@ -1,1 +1,19 @@
-<p>show-signature works!</p>
+<sp-box title="SIGNATURE" (copy)="onCopy()">
+
+  <ng-container *ngIf="signValue && signValue.length > 0; else sign_err">
+    <div class="attribute">
+      <div class="attr-name">Algorithm</div>
+      <div class="attr-value">{{ signAlgo }}</div>
+    </div>
+
+    <div class="attribute">
+      <div class="attr-name">Signature</div>
+      <div class="attr-value" [innerHTML]="signValue | toHex"></div>
+    </div>
+  </ng-container>
+
+  <ng-template #sign_err>
+    ...
+  </ng-template>
+
+</sp-box>
