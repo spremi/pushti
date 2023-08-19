@@ -50,6 +50,10 @@
     <sp-show-extensions *ngIf="certificate.hasExtensions()"
       [extensions]="certificate.getExtensions()">
     </sp-show-extensions>
+    <sp-show-fingerprints
+      title="FINGERPRINTS"
+      [value]="certificate.getCertFingerprints()">
+    </sp-show-fingerprints>
   </ng-container>
 
   <sp-input-pem *ngIf="certFile !== ''"></sp-input-pem>
