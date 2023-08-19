@@ -13,6 +13,7 @@ import { FileDropCode, FileDropStatus, FileDropType, initFileDropStatus } from '
 import { FileMimesCert, FileMimesPdf } from '@models/file-mimes';
 import { DropOverlayService } from '@services/drop-overlay.service';
 import { FileStoreService } from '@services/file-store.service';
+import { interval, takeWhile } from 'rxjs';
 
 @Component({
   selector: 'sp-drop-zone',
@@ -34,6 +35,8 @@ export class DropZoneComponent implements OnInit, AfterViewInit {
   private dropOverlay = inject(DropOverlayService);
 
   prompt = this.PROMPT_DEFAULT;
+
+  count = 5;
 
   constructor(
     private renderer: Renderer2,
@@ -65,6 +68,24 @@ export class DropZoneComponent implements OnInit, AfterViewInit {
 
     this.renderer.setStyle(self, 'width', this.dropOverlay.getWidth());
     this.renderer.setStyle(self, 'height', this.dropOverlay.getHeight());
+
+    //
+    // Start timer to close automatically
+    //
+    interval(1000).pipe(
+      takeWhile(() => this.count > 0)
+    ).subscribe(() => {
+      this.count--;
+
+      if (this.count == 0) {
+        const errTimeout = initFileDropStatus(
+          FileDropCode.ErrTimeout,
+          FileDropType.FileUnknown,
+          'No files dropped!');
+
+        this.status.emit(errTimeout);
+      }
+    });
   }
 
   /**

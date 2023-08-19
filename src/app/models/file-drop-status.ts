@@ -16,6 +16,7 @@ export enum FileDropCode {
   ErrNotSupported = -102,
   ErrReading = -103,
   ErrParsing = -104,
+  ErrTimeout = -105,
 }
 
 export enum FileDropType {
