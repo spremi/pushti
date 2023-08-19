@@ -13,6 +13,7 @@ import { SpOidBaseAlgorithmECDSA, SpOidBaseAlgorithmRSA } from '@models/sp-oid-a
 import { SpX509AlgorithmId } from '@models/sp-x509-algorithm-id';
 import { SpX509Certificate } from '@models/sp-x509-certificate';
 import { SpX509Extension } from '@models/sp-x509-extension';
+import { SpX509Fingerprints } from '@models/sp-x509-fingerprints';
 import { SpEcPublicKey, SpRsaPublicKey } from '@models/sp-x509-public-key-info';
 import { SpX509SerialNumber } from '@models/sp-x509-serial-number';
 import { SpX509Signature } from '@models/sp-x509-signature';
@@ -268,6 +269,29 @@ export class CertificateParserService {
     }
 
     //
+    // Fingerprints
+    //
+    let certFingerprints = new SpX509Fingerprints();
+
+    this.hash('SHA-1', ber).then(
+      data => {
+        certFingerprints.setSHA1(data);
+      },
+      err => {
+        console.log('Error while calculating SHA1 fingerprint.');
+      });
+
+    this.hash('SHA-256', ber).then(
+      data => {
+        certFingerprints.setSHA256(data);
+      },
+      err => {
+        console.log('Error while calculating SHA256 fingerprint.');
+      });
+
+    this.parsedCert.setCertFingerprints(certFingerprints);
+
+    //
     // Unique ID
     //
     console.log(this.cert.issuerUniqueID);
@@ -329,5 +353,15 @@ export class CertificateParserService {
       bufView[i] = str.charCodeAt(i);
 
     return buf;
+  };
+
+  private hash = async (algo: string, buffer: ArrayBuffer) => {
+    const hashBuffer = await crypto.subtle.digest(algo, buffer);
+
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+
+    return hashArray
+      .map((b) => b.toString(16).padStart(2, '0').toUpperCase())
+      .join(':');
   };
 }
