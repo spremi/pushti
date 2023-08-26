@@ -79,10 +79,14 @@ export class CertificateParserService {
 
     let ret = false;
 
-    const b64 = pem.replace(this.CERT_HEAD, '').replace(this.CERT_TAIL, '');
+    //
+    // Extract contents between CERT_HEAD (included) and CERT_TAIL(included).
+    //
+    let trimPEM = pem.substring(pem.indexOf(this.CERT_HEAD) + this.CERT_HEAD.length);
+    trimPEM = trimPEM.slice(0, trimPEM.indexOf(this.CERT_TAIL));
 
     try {
-      const ber = this.stringToArrayBuffer(atob(b64));
+      const ber = this.stringToArrayBuffer(atob(trimPEM));
 
       ret = this.parse(ber);
     } catch (e) {
