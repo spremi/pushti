@@ -13,6 +13,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { SpX509Certificate } from '@models/sp-x509-certificate';
 import { CertificateParserService } from '@services/certificate-parser.service';
 import { FileStoreService } from '@services/file-store.service';
+import { LayoutService } from '@services/layout.service';
 import { Subscription, distinctUntilChanged, filter } from 'rxjs';
 
 @Component({
@@ -25,6 +26,7 @@ export class CertComponent implements OnInit, OnDestroy {
   private fileStore = inject(FileStoreService);
   private snackBar = inject(MatSnackBar);
   private certParser = inject(CertificateParserService);
+  private layoutSvc = inject(LayoutService);
 
   readonly ACCEPT_EXTENSIONS = [
     '.ber',
@@ -38,7 +40,10 @@ export class CertComponent implements OnInit, OnDestroy {
   certFile = '';
   certificate!: SpX509Certificate | null;
 
+  columns = 'cols-1';
+
   private update$!: Subscription;
+  private layout$!: Subscription;
 
   ngOnInit(): void {
     this.update$ = this.certParser.updateObserver()
@@ -50,11 +55,21 @@ export class CertComponent implements OnInit, OnDestroy {
         this.certFile = this.certParser.getName();
         this.certificate = this.certParser.getCertificate();
       });
+
+    this.layout$ = this.layoutSvc.columnObserver()
+      .pipe(distinctUntilChanged())
+      .subscribe(value => {
+        this.columns = 'cols-' + value;
+      });
   }
 
   ngOnDestroy(): void {
     if (this.update$) {
       this.update$.unsubscribe();
+    }
+
+    if (this.layout$) {
+      this.layout$.unsubscribe();
     }
   }
 

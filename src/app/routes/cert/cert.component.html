@@ -24,8 +24,8 @@
     </button>
 </mat-toolbar>
 
-<div class="parse-area">
-  <ng-container *ngIf="certificate">
+<div class="parse-area" >
+  <div *ngIf="certificate" class="columns" [ngClass]="columns">
     <sp-show-version
       [value]="certificate.getVersion()">
     </sp-show-version>
@@ -43,6 +43,13 @@
       title="SUBJECT"
       [value]="certificate.getSubject()">
     </sp-show-entity>
+    <sp-show-fingerprints
+      title="FINGERPRINTS"
+      [value]="certificate.getCertFingerprints()">
+    </sp-show-fingerprints>
+  </div>
+
+  <ng-container *ngIf="certificate">
     <sp-show-subject-public-key
       title="SUBJECT PUBLIC KEY INFO"
       [value]="certificate.getSubjectPublicKeyInfo()">
@@ -50,10 +57,6 @@
     <sp-show-extensions *ngIf="certificate.hasExtensions()"
       [extensions]="certificate.getExtensions()">
     </sp-show-extensions>
-    <sp-show-fingerprints
-      title="FINGERPRINTS"
-      [value]="certificate.getCertFingerprints()">
-    </sp-show-fingerprints>
     <sp-show-signature
       title="SIGNATURE"
       [value]="certificate.getCertSignature()">
