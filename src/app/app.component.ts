@@ -8,8 +8,9 @@
 // (c) Copyright 2023 Sanjeev Premi.
 //
 
-import { Component, ElementRef, HostListener, ViewChild, inject } from '@angular/core';
+import { Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild, inject } from '@angular/core';
 import { DropOverlayService } from '@services/drop-overlay.service';
+import { LayoutService } from '@services/layout.service';
 
 import { PreviousRouteService } from '@services/previous-route.service';
 
@@ -18,7 +19,7 @@ import { PreviousRouteService } from '@services/previous-route.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.sass']
 })
-export class AppComponent {
+export class AppComponent implements OnInit, OnDestroy {
   title = 'pushti-web';
 
   @ViewChild('main', { read: ElementRef })
@@ -34,7 +35,17 @@ export class AppComponent {
     this.showDropZone();
   }
 
-  constructor(private prevRouteSvc: PreviousRouteService) {
+  constructor(
+    private prevRouteSvc: PreviousRouteService,
+    private layoutSvc: LayoutService) {
+  }
+
+  ngOnInit(): void {
+    this.layoutSvc.init();
+  }
+
+  ngOnDestroy(): void {
+    this.layoutSvc.clear();
   }
 
   private showDropZone(): void {
