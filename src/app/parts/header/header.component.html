@@ -8,12 +8,14 @@
   <span class="h-spacer"></span>
 
   <button mat-icon-button aria-label="Certificate"
-    [routerLink]="['/cert']">
+    [routerLink]="['/cert']"
+    [disabled]="url === '/cert'">
     <mat-icon svgIcon="certificate"></mat-icon>
   </button>
 
   <button mat-icon-button aria-label="PDF"
-    [routerLink]="['/pdf']">
+    [routerLink]="['/pdf']"
+    [disabled]="url === '/pdf'">
     <mat-icon svgIcon="pdf"></mat-icon>
   </button>
 
