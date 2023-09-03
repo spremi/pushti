@@ -21,7 +21,7 @@ export const AppIcons: IconSet = {
   list: [
     {
       icon: 'apps',
-      file: 'apps.svg',
+      file: 'pushti-icon.svg',
     },
     {
       icon: 'attribution',
