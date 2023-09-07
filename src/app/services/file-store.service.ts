@@ -63,7 +63,7 @@ export class FileStoreService {
         }
       }
     } else {
-      // TODO: Handle PDF.
+      ret = this.pdfParser.parse(fName, fContents);
     }
 
     return ret;
