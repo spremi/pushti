@@ -50,6 +50,7 @@ import { ShowFingerprintsComponent } from '@parts/show-fingerprints/show-fingerp
 import { ShowUniqueIdComponent } from '@parts/show-unique-id/show-unique-id.component';
 import { ShowSignatureComponent } from '@parts/show-signature/show-signature.component';
 import { ShowExtensionsComponent } from '@parts/show-extensions/show-extensions.component';
+import { ShowExtnDefaultComponent } from '@parts/show-extn-default/show-extn-default.component';
 
 import { IconService } from '@services/icon.service';
 
@@ -82,6 +83,7 @@ import { AppComponent } from './app.component';
     ShowUniqueIdComponent,
     ShowSignatureComponent,
     ShowExtensionsComponent,
+    ShowExtnDefaultComponent,
   ],
   imports: [
     BrowserModule,
