@@ -1,1 +1,31 @@
-<p>filler works!</p>
+<ng-container *ngIf="select === 'cert'">
+  <div class="icons">
+    <img src="assets/images/pushti-pem.svg" />
+    <img src="assets/images/pushti-der.svg" />
+  </div>
+
+  <div class="para">
+    To parse a certificate, simply the drag the file here.
+  </div>
+
+  <div class="para">
+    Or, use the
+    <img src="assets/icons/upload.svg"/> button in toolbar above.
+  </div>
+</ng-container>
+
+<ng-container *ngIf="select === 'pdf'">
+  <div class="icons">
+    <img src="assets/images/pushti-pdf.svg" />
+  </div>
+
+  <div class="para">
+    To view digital signatures embedded in a PDF, simply drag the file
+    here.
+  </div>
+
+  <div class="para">
+    Or, use the
+    <img src="assets/icons/upload.svg"/> button in toolbar above.
+  </div>
+</ng-container>

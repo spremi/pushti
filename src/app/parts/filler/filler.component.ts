@@ -1,4 +1,14 @@
-import { Component } from '@angular/core';
+//
+// @project     pushti-web
+//
+// @author      Sanjeev Premi <spremi@ymail.com>
+//
+// @license     BSD-3-Clause
+//
+// (c) Copyright 2023 Sanjeev Premi.
+//
+
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'sp-filler',
@@ -6,5 +16,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./filler.component.sass']
 })
 export class FillerComponent {
-
+  @Input() select!: string;
 }
