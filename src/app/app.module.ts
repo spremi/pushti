@@ -43,6 +43,7 @@ import { FooterComponent } from '@parts/footer/footer.component';
 import { BodyComponent } from '@parts/body/body.component';
 import { IconLinkComponent } from '@parts/icon-link/icon-link.component';
 import { DropZoneComponent } from '@parts/drop-zone/drop-zone.component';
+import { FillerComponent } from '@parts/filler/filler.component';
 
 import { BoxComponent } from '@parts/box/box.component';
 import { InputPemComponent } from '@parts/input-pem/input-pem.component';
@@ -115,6 +116,7 @@ import { AppComponent } from './app.component';
     DropZoneComponent,
     BoxComponent,
     ShowExtnSubjectKeyIdComponent,
+    FillerComponent,
   ],
   imports: [
     BrowserModule,
