@@ -8,7 +8,7 @@
 // (c) Copyright 2023 Sanjeev Premi.
 //
 
-import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit, inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SpX509Certificate } from '@models/sp-x509-certificate';
 import { CertificateParserService } from '@services/certificate-parser.service';
@@ -40,10 +40,39 @@ export class CertComponent implements OnInit, OnDestroy {
   certFile = '';
   certificate!: SpX509Certificate | null;
 
+  flash = false;
+
   columns = 'cols-1';
 
   private update$!: Subscription;
   private layout$!: Subscription;
+
+  @HostListener('paste', ['$event'])
+  onPaste(event: ClipboardEvent) {
+    this.flash = true;
+
+    setTimeout(() => {
+      this.flash = false;
+    }, 100);
+
+    if (event.clipboardData) {
+      const text = event.clipboardData.getData('text');
+
+      if (text) {
+        let ret = this.fileStore.save("CLIPBOARD.pem", 'text/plain', text as string);
+
+        if (ret) {
+          this.certFile = 'pasted-from-clipboard';
+        } else {
+          this.snackBar.open('Pasted \'text\' is not valid PEM');
+        }
+      } else {
+        this.snackBar.open('No \'text\' in clipboard');
+      }
+    } else {
+      this.snackBar.open('Clipboard was empty');
+    }
+  }
 
   ngOnInit(): void {
     this.update$ = this.certParser.updateObserver()
