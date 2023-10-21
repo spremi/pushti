@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="256"
+   height="256"
+   viewBox="0 0 256 256"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   sodipodi:docname="pushti-pdf.svg"
+   inkscape:export-filename="icon-pdf.svg"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+   <title
+      id="title1045">Icon PDF</title>
+   <sodipodi:namedview
+      id="namedview7"
+      pagecolor="#ffffff"
+      bordercolor="#666666"
+      borderopacity="1.0"
+      inkscape:showpageshadow="2"
+      inkscape:pageopacity="0.0"
+      inkscape:pagecheckerboard="0"
+      inkscape:deskcolor="#d1d1d1"
+      inkscape:document-units="px"
+      showgrid="true"
+      inkscape:zoom="2.1694727"
+      inkscape:cx="59.691924"
+      inkscape:cy="105.09466"
+      inkscape:window-width="1920"
+      inkscape:window-height="1015"
+      inkscape:window-x="0"
+      inkscape:window-y="0"
+      inkscape:window-maximized="1"
+      inkscape:current-layer="layer1">
+      <inkscape:grid
+         type="xygrid"
+         id="grid132"
+         empspacing="8" />
+   </sodipodi:namedview>
+   <defs
+      id="defs2" />
+   <g
+      inkscape:label="Layer 1"
+      inkscape:groupmode="layer"
+      id="layer1">
+      <path
+         id="path236"
+         style="fill:#55ddff;paint-order:stroke markers fill;stop-color:#000000"
+         d="M 128 16 A 112 112 0 0 0 16 128 A 112 112 0 0 0 128 240 A 112 112 0 0 0 240 128 A 112 112 0 0 0 128 16 z M 128 22 A 106 106 0 0 1 234 128 A 106 106 0 0 1 128 234 A 106 106 0 0 1 22 128 A 106 106 0 0 1 128 22 z "
+         inkscape:label="pathCircle" />
+      <path
+         style="fill:#aaeeff"
+         d="M 72,48 V 208 H 184 V 72 L 160,48 Z"
+         id="path664"
+         sodipodi:nodetypes="cccccc"
+         inkscape:label="pathPage" />
+      <path
+         style="fill:#006680"
+         d="m 160,48 v 24 h 24 z"
+         id="path715"
+         inkscape:label="pathNotch" />
+      <rect
+         style="fill:#2ad4ff;stroke-width:1.0;paint-order:stroke markers fill;stop-color:#000000"
+         id="rect403"
+         width="112.0"
+         height="64.0"
+         x="56"
+         y="96"
+         inkscape:label="rectName" />
+      <g
+         aria-label="PDF"
+         id="text2031"
+         style="font-weight:bold;font-size:40px;line-height:1.25;font-family:Roboto;-inkscape-font-specification:'Roboto Bold';letter-spacing:0px;word-spacing:0px;fill:#004455"
+         inkscape:label="textName">
+         <path
+            d="m 70.459984,114 v 28 h 6.48 v -7.72 h 5.64 c 7.48,0 12.16,-3.88 12.16,-10.12 0,-6.28 -4.68,-10.16 -12.16,-10.16 z m 6.48,15 v -9.72 h 5.28 c 3.96,0 5.96,1.8 5.96,4.88 0,3.04 -2,4.84 -5.96,4.84 z"
+            style="font-family:Montserrat;-inkscape-font-specification:'Montserrat Bold'"
+            id="path242"
+            inkscape:label="pathP" />
+         <path
+            d="m 112.05999,142 c 9.16,0 15.44,-5.52 15.44,-14 0,-8.48 -6.28,-14 -15.44,-14 H 99.339989 v 28 z m -6.24,-22.68 h 5.92 c 5.56,0 9.2,3.32 9.2,8.68 0,5.36 -3.64,8.68 -9.2,8.68 h -5.92 z"
+            style="font-family:Montserrat;-inkscape-font-specification:'Montserrat Bold'"
+            id="path244"
+            inkscape:label="pathD" />
+         <path
+            d="m 153.54,114 h -21.16 v 28 h 6.48 v -10.2 h 12.96 v -5.2 h -12.96 v -7.4 h 14.68 z"
+            style="font-family:Montserrat;-inkscape-font-specification:'Montserrat Bold'"
+            id="path246"
+            inkscape:label="pathF" />
+      </g>
+   </g>
+   <metadata
+      id="metadata1043">
+      <rdf:RDF>
+         <cc:License
+            rdf:about="http://creativecommons.org/licenses/by-nc/4.0/">
+            <cc:permits
+               rdf:resource="http://creativecommons.org/ns#Reproduction" />
+            <cc:permits
+               rdf:resource="http://creativecommons.org/ns#Distribution" />
+            <cc:requires
+               rdf:resource="http://creativecommons.org/ns#Notice" />
+            <cc:requires
+               rdf:resource="http://creativecommons.org/ns#Attribution" />
+            <cc:prohibits
+               rdf:resource="http://creativecommons.org/ns#CommercialUse" />
+            <cc:permits
+               rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+         </cc:License>
+         <cc:Work
+            rdf:about="">
+            <cc:license
+               rdf:resource="http://creativecommons.org/licenses/by-nc/4.0/" />
+            <dc:title>Icon PDF</dc:title>
+            <dc:creator>
+               <cc:Agent>
+                  <dc:title>Sanjeev Premi</dc:title>
+               </cc:Agent>
+            </dc:creator>
+            <dc:description>Custom Icon for PDF</dc:description>
+            <dc:identifier>Sanjeev Premi</dc:identifier>
+         </cc:Work>
+      </rdf:RDF>
+   </metadata>
+</svg>
