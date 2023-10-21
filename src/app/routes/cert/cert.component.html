@@ -25,6 +25,8 @@
 </mat-toolbar>
 
 <div class="parse-area" >
+  <sp-filler *ngIf="!certificate" select="cert"></sp-filler>
+
   <div *ngIf="certificate" class="columns" [ngClass]="columns">
     <sp-show-version
       [value]="certificate.getVersion()">

@@ -24,6 +24,8 @@
     </button>
 </mat-toolbar>
 
+<sp-filler *ngIf="!pdfUrl" select="pdf"></sp-filler>
+
 <div class="parse-area" *ngIf="pdfUrl">
   <object type="application/pdf" class="pdf" [data]="pdfUrl"></object>
 </div>
