@@ -1,4 +1,4 @@
-<div class="box-head">
+<div class="box-head" [ngClass]="{'theme-0': !extn, 'theme-1': extn }">
   <span class="title">{{title}}</span>
   <span class="oid" *ngIf="oid !== ''">{{oid}}</span>
 
