@@ -56,6 +56,10 @@
         opacity: 1
         cursor: pointer
 
+      &.ring
+        animation: ring 500ms 0s ease-in-out 1
+        transform-origin: center top
+
   .box-content
     display: table-row-group
     padding: 8px
@@ -64,3 +68,41 @@
     border-bottom-right-radius: 4px
 
     flex: 1 0 auto
+
+  @keyframes ring
+    0%
+      transform: rotate(0)
+    1%
+      transform: rotate(35deg)
+    2%
+      transform: rotate(-30deg)
+    3%
+      transform: rotate(30deg)
+    4%
+      transform: rotate(-25deg)
+    7%
+      transform: rotate(25deg)
+    10%
+      transform: rotate(-20deg)
+    15%
+      transform: rotate(20deg)
+    20%
+      transform: rotate(-15deg)
+    25%
+      transform: rotate(15deg)
+    30%
+      transform: rotate(-10deg)
+    35%
+      transform: rotate(10deg)
+    40%
+      transform: rotate(-6deg)
+    45%
+      transform: rotate(5deg)
+    50%
+      transform: rotate(-1deg)
+    55%
+      transform: rotate(1deg)
+    60%
+      transform: rotate(0)
+    100%
+      transform: rotate(0)
