@@ -14,6 +14,10 @@
       <div class="attr-name">Organization Unit</div>
       <div class="attr-value">{{ rdn['OU'] }}</div>
     </div>
+    <div class="attribute" *ngIf="rdn['organizationIdentifier']">
+      <div class="attr-name">Organization Identifier</div>
+      <div class="attr-value">{{ rdn['organizationIdentifier'] }}</div>
+    </div>
     <div class="attribute" *ngIf="rdn['C']">
       <div class="attr-name">Country</div>
       <div class="attr-value">{{ rdn['C'] }}</div>
