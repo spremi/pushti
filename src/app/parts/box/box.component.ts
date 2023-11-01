@@ -8,7 +8,9 @@
 // (c) Copyright 2023 Sanjeev Premi.
 //
 
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, inject } from '@angular/core';
+
+import { Clipboard } from '@angular/cdk/clipboard';
 
 @Component({
   selector: 'sp-box',
@@ -22,7 +24,15 @@ export class BoxComponent {
   @Input() extnCritical = false;
   @Output() copy = new EventEmitter<any>();
 
+  private elRef = inject(ElementRef);
+  private clipboard = inject(Clipboard);
+
   onCopyContent(): void {
+    const text = this.elRef.nativeElement.innerText;
+
+    // Remove instances of 'content_copy' (name of the icon)
+    this.clipboard.copy(text.replaceAll('content_copy', ''));
+
     this.copy.emit();
   }
 }
