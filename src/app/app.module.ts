@@ -15,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { OverlayModule } from '@angular/cdk/overlay';
+import { ClipboardModule } from '@angular/cdk/clipboard';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -126,6 +127,7 @@ import { AppComponent } from './app.component';
     HttpClientModule,
     ReactiveFormsModule,
     OverlayModule,
+    ClipboardModule,
     MatButtonModule,
     MatCardModule,
     MatCheckboxModule,
