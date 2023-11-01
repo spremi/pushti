@@ -28,4 +28,20 @@
 
 <div class="parse-area" *ngIf="pdfUrl">
   <object type="application/pdf" class="pdf" [data]="pdfUrl"></object>
+
+  <div class="parse-info">
+    <ng-container *ngIf="pdfSigned">
+      <div class="sign-ok">
+        Document is digitally signed.
+      </div>
+
+      <div class="sign-info">
+        TODO: Show signature information
+      </div>
+    </ng-container>
+
+    <div class="sign-na" *ngIf="!pdfSigned">
+      Document is not digitally signed.
+    </div>
+  </div>
 </div>

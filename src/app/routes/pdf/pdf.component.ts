@@ -35,10 +35,14 @@ export class PdfComponent implements OnInit, OnDestroy {
   pdfName = '';
   pdfUrl!: SafeResourceUrl | null;
 
+  pdfSigned = false;
+
   ngOnInit(): void {
     this.pdfUpdate$ = this.pdfParser.updateObserver().subscribe(() => {
       this.pdfName = this.pdfParser.getName();
       this.pdfUrl = this.pdfParser.getPdf();
+
+      this.pdfSigned = this.pdfParser.hasSignature();
     });
   }
 
