@@ -41,8 +41,12 @@ export class BoxComponent {
 
     const text = this.elRef.nativeElement.innerText;
 
-    // Remove instances of 'content_copy' (name of the icon)
-    this.clipboard.copy(text.replaceAll('content_copy', ''));
+    //
+    // Remove icon names from copied text
+    //
+    const ret = text.replaceAll('content_copy', '').replaceAll('read_more', '');
+
+    this.clipboard.copy(ret);
 
     this.copy.emit();
   }
