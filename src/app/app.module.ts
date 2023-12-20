@@ -70,6 +70,7 @@ import { ShowExtnAuthorityInfoAccessComponent } from '@parts/show-extn-authority
 import { ShowExtnCrlDistroPointComponent } from '@parts/show-extn-crl-distro-point/show-extn-crl-distro-point.component';
 import { ShowExtnNsCommentComponent } from '@parts/show-extn-ns-comment/show-extn-ns-comment.component';
 import { ShowExtnSubjectKeyIdComponent } from '@parts/show-extn-subject-key-id/show-extn-subject-key-id.component';
+import { ShowPdfSignComponent } from '@parts/show-pdf-sign/show-pdf-sign.component';
 
 import { IconService } from '@services/icon.service';
 
@@ -118,6 +119,7 @@ import { AppComponent } from './app.component';
     BoxComponent,
     ShowExtnSubjectKeyIdComponent,
     FillerComponent,
+    ShowPdfSignComponent,
   ],
   imports: [
     BrowserModule,
