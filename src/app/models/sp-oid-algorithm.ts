@@ -32,6 +32,10 @@ export const SpOidAlgorithm: Record<string, string> = {
   '1.2.840.113549.1.1.13': 'SHA512 with RSA Encryption',
   '1.2.840.113549.1.1.14': 'SHA224 with RSA Encryption',
 
+  '1.3.14.3.2.24': 'MD2 with RSA Signature',
+  '1.3.14.3.2.25': 'MD5 with RSA Signature',
+  '1.3.14.3.2.26': 'SHA1',
+
   '1.3.36.3.3.2.8.1.1.1': 'brainpoolP160r1',
   '1.3.36.3.3.2.8.1.1.2': 'brainpoolP160t1',
   '1.3.36.3.3.2.8.1.1.3': 'brainpoolP192r1',
