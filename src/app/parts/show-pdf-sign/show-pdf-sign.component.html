@@ -1,1 +1,9 @@
-<p>show-pdf-sign works!</p>
+<ng-container *ngIf="value; then sign_ok else sign_err"></ng-container>
+
+<ng-template #sign_ok>
+  <sp-show-pdf-sign-container [value]="contentType"></sp-show-pdf-sign-container>
+</ng-template>
+
+<ng-template #sign_err>
+  No signature available.
+</ng-template>
