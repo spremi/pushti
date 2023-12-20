@@ -12,6 +12,13 @@ import { Injectable, inject } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
 import { BehaviorSubject, Observable } from 'rxjs';
 
+import { Certificate, ContentInfo, IssuerAndSerialNumber, SignedData } from 'pkijs';
+
+import { SpPkcs7Signature } from '@models/sp-pkcs7-signature';
+import { SpX509AlgorithmId } from '@models/sp-x509-algorithm-id';
+import { SpPkcs7ContentId } from '@models/sp-pkcs7-content-id';
+import { SpPkcs7SignerInfo } from '@models/sp-pkcs7-signer-info';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -19,6 +26,8 @@ export class PdfParserService {
 
   readonly PAT_START = new RegExp("%PDF-1.[0-7]");
   readonly PAT_END = '%EOF\n';
+
+  readonly PAT_BYTE_RANGE = new RegExp('/ByteRange\\s*\\[\\s*(.*?)\\s*\\]');
 
   private sanitizer = inject(DomSanitizer);
 
@@ -35,6 +44,10 @@ export class PdfParserService {
   private safeUrl: SafeResourceUrl | null = null;
 
   private count = 0;
+
+  private isSigned = false;
+
+  private signature!: SpPkcs7Signature | null;
 
   constructor() { }
 
@@ -54,8 +67,16 @@ export class PdfParserService {
     return this.safeUrl;
   }
 
+  getSignature(): SpPkcs7Signature | null {
+    return this.signature;
+  }
+
   public parse(name: string, contents: string): boolean {
     let ret = false;
+
+    this.isSigned = false;
+
+    this.signature = null;
 
     const fileStart = contents.slice(0, 9);
     const fileEnd = contents.slice(-5);
@@ -71,9 +92,30 @@ export class PdfParserService {
         if (this.safeUrl) {
           this.name = name;
 
-          this.update$.next(++this.count);
+          //
+          // Extract signature
+          //
+          const reByteRange = new RegExp(this.PAT_BYTE_RANGE);
+          const byteRange = contents.match(reByteRange);
 
-          ret = true;
+          if (byteRange !== null) {
+            console.log('Byte range = ' + byteRange[1]);
+
+            const range = byteRange[1].split(' ');
+            const signStart = parseInt(range[1]) + 1;
+            const signEnd = parseInt(range[2]) - 1;
+
+            const sign = contents.substring(signStart, signEnd);
+            // console.log('Signature = ' + sign);
+
+            this.internalParse(sign);
+
+            this.isSigned = true;
+
+            ret = true;
+          }
+
+          this.update$.next(++this.count);
         }
       } catch (e) {
         if (e instanceof Error) {
@@ -94,4 +136,94 @@ export class PdfParserService {
 
     this.update$.next(++this.count);
   }
+
+  public hasSignature(): boolean {
+    return this.isSigned;
+  }
+
+  private internalParse(hex: string): void {
+    const signBer = this.hex2ber(hex);
+
+    const contentInfo = ContentInfo.fromBER(signBer);
+    const signData = new SignedData({ schema: contentInfo.content });
+    console.log(signData);
+
+    this.signature = new SpPkcs7Signature();
+
+    //
+    // Get content type
+    //
+    const contentType = new SpPkcs7ContentId();
+    contentType.setOid(signData.encapContentInfo.eContentType);
+
+    this.signature.setContentType(contentType);
+
+    //
+    // Extract certificates
+    //
+    const certs = signData.certificates;
+    certs?.forEach(cert => {
+      console.log(cert);
+
+      if (cert instanceof Certificate) {
+        console.log(cert.issuer.typesAndValues);
+      }
+    });
+
+    //
+    // Signer information
+    //
+    const signerInfos = signData.signerInfos;
+    signerInfos?.forEach(info => {
+      const signerInfo = new SpPkcs7SignerInfo();
+
+      const signerId = signerInfo.getSignerId();
+
+      if (info.sid instanceof IssuerAndSerialNumber) {
+        const issuer = signerId.getIssuer();
+
+        info.sid.issuer.typesAndValues.forEach(arg => {
+          issuer.addRDN(arg.type, arg.value.valueBlock.value);
+        })
+
+        signerId.getIssuerSN().set(info.sid.serialNumber.valueBlock.valueHexView);
+      }
+
+      //
+      // Digest Algorithm
+      //
+      const digestAlgo = signerInfo.getDigestAlgo();
+      digestAlgo.setOid(info.digestAlgorithm.algorithmId);
+
+      //
+      // Signature
+      //
+      const signAlgoId = new SpX509AlgorithmId();
+      signAlgoId.setOid(info.signatureAlgorithm.algorithmId);
+
+      const signature = signerInfo.getSignature();
+      signature.setAlgorithmId(signAlgoId);
+      signature.setValue(new Uint8Array(info.signature.getValue()));
+
+      this.signature?.addSignerInfo(signerInfo);
+      console.log(info);
+    });
+
+    console.log(this.signature);
+  }
+
+  /**
+   * Convert certificate in HEX string to DER.
+   */
+  private hex2ber(str: string): ArrayBuffer {
+    var buf = new ArrayBuffer(str.length / 2);
+    var bufView = new Uint8Array(buf);
+
+    for (var i = 0, j = 0, strLen = str.length; i < strLen; i += 2, j++) {
+      const x = str[i] + str[i + 1];
+      bufView[j] = parseInt(x, 16);
+    }
+
+    return buf;
+  };
 }
