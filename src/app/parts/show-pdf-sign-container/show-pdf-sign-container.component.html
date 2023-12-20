@@ -1,1 +1,12 @@
-<p>show-pdf-sign-container works!</p>
+<sp-box title="CONTAINER">
+
+  <ng-container *ngIf="value; else container_err">
+    <div class="attribute">
+      <div class="attr-value">{{ value.getName() }} ({{ value.getOid() }})</div>
+    </div>
+  </ng-container>
+
+  <ng-template #container_err>
+    ...
+  </ng-template>
+</sp-box>
