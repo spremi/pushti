@@ -2,6 +2,37 @@
 
 <ng-template #sign_ok>
   <sp-show-pdf-sign-container [value]="contentType"></sp-show-pdf-sign-container>
+
+  <sp-box title="SIGNER INFORMATION">
+    <ng-container *ngFor='let info of signerInfo; let count=index;'>
+      <sp-box title="SIGNER {{count}}">
+        <sp-box title="VERSION">
+          {{ info.getVersion() }}
+        </sp-box>
+
+        <sp-box title="DIGEST ALGORITHM">
+          <ng-container *ngIf="info.getDigestAlgo() as v">
+            {{ v.getName() }} ({{ v.getOid() }})
+          </ng-container>
+        </sp-box>
+
+        <sp-show-signature
+          [value]="info.getSignature()">
+        </sp-show-signature>
+
+      <sp-box title="CERTIFICATES ({{ certPreview?.length}})">
+        <ng-container *ngFor='let cert of certPreview; let count=index;'>
+          <sp-box title="CERTIFICATE #{{count + 1}}">
+            <sp-show-serial-num [value]="cert.getSerialNumber()"></sp-show-serial-num>
+            <sp-show-entity title="SUBJECT" [value]="cert.getSubject()"></sp-show-entity>
+            <sp-show-entity title="ISSUER" [value]="cert.getIssuer()"></sp-show-entity>
+          </sp-box>
+        </ng-container>
+      </sp-box>
+
+      </sp-box>
+    </ng-container>
+</sp-box>
 </ng-template>
 
 <ng-template #sign_err>
