@@ -86,4 +86,12 @@ export class PdfParserService {
 
     return ret;
   }
+
+  public clear() {
+    this.objUrl = '';
+    this.safeUrl = null;
+    this.name = '';
+
+    this.update$.next(++this.count);
+  }
 }
