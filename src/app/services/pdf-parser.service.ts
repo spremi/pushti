@@ -18,6 +18,7 @@ import { SpPkcs7Signature } from '@models/sp-pkcs7-signature';
 import { SpX509AlgorithmId } from '@models/sp-x509-algorithm-id';
 import { SpPkcs7ContentId } from '@models/sp-pkcs7-content-id';
 import { SpPkcs7SignerInfo } from '@models/sp-pkcs7-signer-info';
+import { SpCertPreview } from '@models/sp-cert-preview';
 
 @Injectable({
   providedIn: 'root'
@@ -165,9 +166,40 @@ export class PdfParserService {
     certs?.forEach(cert => {
       console.log(cert);
 
+      const previewCert = new SpCertPreview();
+
       if (cert instanceof Certificate) {
-        console.log(cert.issuer.typesAndValues);
+        //
+        // Serial number
+        //
+        const pcSerialNum = previewCert.getSerialNumber();
+        pcSerialNum.set(cert.serialNumber.valueBlock.valueHexView);
+
+        //
+        // Subject
+        //
+        const pcSubject = previewCert.getSubject();
+
+        cert.subject.typesAndValues.forEach(arg => {
+          pcSubject.addRDN(arg.type, arg.value.valueBlock.value);
+        });
+
+        //
+        // Issuer
+        //
+        const pcIssuer = previewCert.getIssuer();
+
+        cert.issuer.typesAndValues.forEach(arg => {
+          pcIssuer.addRDN(arg.type, arg.value.valueBlock.value);
+        });
+
+        //
+        // Raw certificate
+        //
+        previewCert.setRaw(cert.toString("base64"));
       }
+
+      this.signature?.addCertificate(previewCert);
     });
 
     //
