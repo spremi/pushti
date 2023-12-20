@@ -35,9 +35,7 @@
         Document is digitally signed.
       </div>
 
-      <div class="sign-info">
-        TODO: Show signature information
-      </div>
+      <sp-show-pdf-sign [value]="pdfSignature"></sp-show-pdf-sign>
     </ng-container>
 
     <div class="sign-na" *ngIf="!pdfSigned">

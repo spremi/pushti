@@ -11,6 +11,7 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SafeResourceUrl } from '@angular/platform-browser';
+import { SpPkcs7Signature } from '@models/sp-pkcs7-signature';
 import { FileStoreService } from '@services/file-store.service';
 import { PdfParserService } from '@services/pdf-parser.service';
 import { Subscription } from 'rxjs';
@@ -37,12 +38,15 @@ export class PdfComponent implements OnInit, OnDestroy {
 
   pdfSigned = false;
 
+  pdfSignature!: SpPkcs7Signature | null;
+
   ngOnInit(): void {
     this.pdfUpdate$ = this.pdfParser.updateObserver().subscribe(() => {
       this.pdfName = this.pdfParser.getName();
       this.pdfUrl = this.pdfParser.getPdf();
 
       this.pdfSigned = this.pdfParser.hasSignature();
+      this.pdfSignature = this.pdfParser.getSignature();
     });
   }
 
