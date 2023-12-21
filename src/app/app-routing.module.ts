@@ -35,6 +35,12 @@ const routes: Routes = [
   {
     path: 'cert',
     component: CertComponent,
+    children: [
+      {
+        path: 'pdf/:id',
+        component: CertComponent,
+      }
+    ]
   },
   {
     path: 'pdf',
