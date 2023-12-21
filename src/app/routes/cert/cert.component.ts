@@ -10,7 +10,9 @@
 
 import { Component, HostListener, OnDestroy, OnInit, inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute } from '@angular/router';
 import { SpX509Certificate } from '@models/sp-x509-certificate';
+import { CacheService } from '@services/cache.service';
 import { CertificateParserService } from '@services/certificate-parser.service';
 import { FileStoreService } from '@services/file-store.service';
 import { LayoutService } from '@services/layout.service';
@@ -23,10 +25,13 @@ import { Subscription, distinctUntilChanged, filter } from 'rxjs';
 })
 export class CertComponent implements OnInit, OnDestroy {
 
+  private activatedRoute = inject(ActivatedRoute);
+
   private fileStore = inject(FileStoreService);
   private snackBar = inject(MatSnackBar);
   private certParser = inject(CertificateParserService);
   private layoutSvc = inject(LayoutService);
+  private cacheSvc = inject(CacheService);
 
   readonly ACCEPT_EXTENSIONS = [
     '.ber',
@@ -46,6 +51,8 @@ export class CertComponent implements OnInit, OnDestroy {
 
   private update$!: Subscription;
   private layout$!: Subscription;
+
+  private cacheId = -1;
 
   @HostListener('paste', ['$event'])
   onPaste(event: ClipboardEvent) {
@@ -77,6 +84,33 @@ export class CertComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    //
+    // Check if we are looking for cached certificate for PEM.
+    //
+    if (this.activatedRoute.firstChild) {
+      this.activatedRoute.firstChild.params.subscribe(params => {
+        this.cacheId = params['id'];
+
+        const pem = this.cacheSvc.get(this.cacheId);
+
+        if (pem === '') {
+          this.snackBar.open('No PEM at index \'' + this.cacheId + '\'');
+        } else {
+          const pemFile = "cached-pem-" + String(this.cacheId).padStart(2, '0') + '.pem';
+
+          console.log(pem);
+
+          let ret = this.fileStore.save(pemFile, 'text/plain', pem);
+
+          if (ret) {
+            this.certFile = pemFile;
+          } else {
+            this.snackBar.open('Cached certificate is not valid PEM');
+          }
+        }
+      });
+    }
+
     this.update$ = this.certParser.updateObserver()
       .pipe(
         filter(v => v !== null),
