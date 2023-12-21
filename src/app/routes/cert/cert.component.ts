@@ -51,6 +51,8 @@ export class CertComponent implements OnInit, OnDestroy {
   onPaste(event: ClipboardEvent) {
     this.flash = true;
 
+    const CLIP_FILE = 'from-clipboard.pem'
+
     setTimeout(() => {
       this.flash = false;
     }, 100);
@@ -59,10 +61,10 @@ export class CertComponent implements OnInit, OnDestroy {
       const text = event.clipboardData.getData('text');
 
       if (text) {
-        let ret = this.fileStore.save("CLIPBOARD.pem", 'text/plain', text as string);
+        let ret = this.fileStore.save(CLIP_FILE, 'text/plain', text as string);
 
         if (ret) {
-          this.certFile = 'pasted-from-clipboard';
+          this.certFile = CLIP_FILE;
         } else {
           this.snackBar.open('Pasted \'text\' is not valid PEM');
         }
