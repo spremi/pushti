@@ -78,6 +78,10 @@ export const ActionIcons: IconSet = {
       file: 'content_copy.svg',
     },
     {
+      icon: 'read_more',
+      file: 'read_more.svg',
+    },
+    {
       icon: 'refresh',
       file: 'refresh.svg',
     },
