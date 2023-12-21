@@ -9,6 +9,7 @@
 //
 
 import { Component, Input, OnChanges, SimpleChanges, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { SpCertPreview } from '@models/sp-cert-preview';
 import { SpPkcs7ContentId } from '@models/sp-pkcs7-content-id';
 import { SpPkcs7Signature } from '@models/sp-pkcs7-signature';
@@ -23,6 +24,7 @@ import { CacheService } from '@services/cache.service';
 export class ShowPdfSignComponent implements OnChanges {
   @Input() value: SpPkcs7Signature | null = null;
 
+  private router = inject(Router);
   private cacheSvc = inject(CacheService);
 
   contentType: SpPkcs7ContentId | null = null;
@@ -57,5 +59,9 @@ export class ShowPdfSignComponent implements OnChanges {
         this.cacheSvc.add(arg.getRaw());
       });
     }
+  }
+
+  details(index: number): void {
+    this.router.navigate(['cert', 'pdf', index]);
   }
 }
