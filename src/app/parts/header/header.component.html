@@ -9,13 +9,13 @@
 
   <button mat-icon-button aria-label="Certificate"
     [routerLink]="['/cert']"
-    [disabled]="url === '/cert'">
+    [disabled]="disableCert">
     <mat-icon svgIcon="certificate"></mat-icon>
   </button>
 
   <button mat-icon-button aria-label="PDF"
     [routerLink]="['/pdf']"
-    [disabled]="url === '/pdf'">
+    [disabled]="disablePdf">
     <mat-icon svgIcon="pdf"></mat-icon>
   </button>
 

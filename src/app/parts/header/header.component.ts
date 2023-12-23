@@ -25,11 +25,24 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   url = '';
 
+  disableCert = false;
+  disablePdf = false;
+
   ngOnInit(): void {
     this.routerEvents$ = this.router.events.pipe(
       filter((e): e is NavigationEnd => e instanceof NavigationEnd),
     ).subscribe((e) => {
       this.url = e.url;
+
+      if (this.url === '/cert' || this.url.startsWith('/cert/pdf/')) {
+        this.disableCert = true;
+        this.disablePdf = false;
+      }
+
+      if (this.url === '/pdf') {
+        this.disableCert = false;
+        this.disablePdf = true
+      }
     });
   }
 
