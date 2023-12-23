@@ -38,6 +38,7 @@ import { PdfComponent } from '@routes/pdf/pdf.component';
 import { AboutComponent } from '@routes/about/about.component';
 import { LicenseComponent } from '@routes/license/license.component';
 import { SettingsComponent } from '@routes/settings/settings.component';
+import { E404Component } from '@routes/e404/e404.component';
 
 import { HeaderComponent } from '@parts/header/header.component';
 import { FooterComponent } from '@parts/footer/footer.component';
@@ -122,6 +123,7 @@ import { AppComponent } from './app.component';
     FillerComponent,
     ShowPdfSignComponent,
     ShowPdfSignContainerComponent,
+    E404Component,
   ],
   imports: [
     BrowserModule,
