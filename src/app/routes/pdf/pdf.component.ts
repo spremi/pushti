@@ -95,6 +95,7 @@ export class PdfComponent implements OnInit, OnDestroy {
     this.pdfUrl = null;
     this.pdfName = '';
 
+    this.pdfParser.clear();
     this.fileStore.clear();
   }
 }
