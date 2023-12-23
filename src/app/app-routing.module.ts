@@ -13,6 +13,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AboutComponent } from '@routes/about/about.component';
 import { CertComponent } from '@routes/cert/cert.component';
+import { E404Component } from '@routes/e404/e404.component';
 import { HomeComponent } from '@routes/home/home.component';
 import { LicenseComponent } from '@routes/license/license.component';
 import { PdfComponent } from '@routes/pdf/pdf.component';
@@ -54,6 +55,10 @@ const routes: Routes = [
     path: 'settings',
     component: SettingsComponent,
   },
+  {
+    path: '**',
+    component: E404Component,
+  }
 ];
 
 @NgModule({
