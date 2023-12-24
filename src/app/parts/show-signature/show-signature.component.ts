@@ -18,6 +18,7 @@ import { SpX509Signature } from '@models/sp-x509-signature';
 })
 export class ShowSignatureComponent {
   @Input() value!: SpX509Signature;
+  @Input() mode = '';
 
   signAlgo = '';
   signValue = new Uint8Array();
