@@ -13,8 +13,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { SafeResourceUrl } from '@angular/platform-browser';
 import { SpPkcs7Signature } from '@models/sp-pkcs7-signature';
 import { FileStoreService } from '@services/file-store.service';
+import { LayoutService } from '@services/layout.service';
 import { PdfParserService } from '@services/pdf-parser.service';
-import { Subscription } from 'rxjs';
+import { Subscription, distinctUntilChanged } from 'rxjs';
 
 @Component({
   selector: 'sp-pdf',
@@ -30,8 +31,10 @@ export class PdfComponent implements OnInit, OnDestroy {
   private fileStore = inject(FileStoreService);
   private snackBar = inject(MatSnackBar);
   private pdfParser = inject(PdfParserService);
+  private layoutSvc = inject(LayoutService);
 
   private pdfUpdate$!: Subscription;
+  private layout$!: Subscription;
 
   pdfName = '';
   pdfUrl!: SafeResourceUrl | null;
@@ -39,6 +42,8 @@ export class PdfComponent implements OnInit, OnDestroy {
   pdfSigned = false;
 
   pdfSignature!: SpPkcs7Signature | null;
+
+  columns = '';
 
   ngOnInit(): void {
     this.pdfUpdate$ = this.pdfParser.updateObserver().subscribe(() => {
@@ -48,11 +53,26 @@ export class PdfComponent implements OnInit, OnDestroy {
       this.pdfSigned = this.pdfParser.hasSignature();
       this.pdfSignature = this.pdfParser.getSignature();
     });
+
+    this.layout$ = this.layoutSvc.columnObserver()
+      .pipe(distinctUntilChanged())
+      .subscribe(value => {
+        console.log('======= value = ' + value);
+        if (value === 1) {
+          this.columns = 'small';
+        } else {
+          this.columns = '';
+        }
+      });
   }
 
   ngOnDestroy(): void {
     if (this.pdfUpdate$) {
       this.pdfUpdate$.unsubscribe();
+    }
+
+    if (this.layout$) {
+      this.layout$.unsubscribe();
     }
   }
 
