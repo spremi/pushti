@@ -8,7 +8,7 @@
 // (c) Copyright 2023 Sanjeev Premi.
 //
 
-import { Component, ElementRef, EventEmitter, Input, Output, ViewChild, inject } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, inject } from '@angular/core';
 
 import { Clipboard } from '@angular/cdk/clipboard';
 import { MatIcon } from '@angular/material/icon';
@@ -18,17 +18,28 @@ import { MatIcon } from '@angular/material/icon';
   templateUrl: './box.component.html',
   styleUrls: ['./box.component.sass']
 })
-export class BoxComponent {
+export class BoxComponent implements OnInit {
   @Input() title = '';
   @Input() oid = '';
   @Input() extn = false;
   @Input() extnCritical = false;
+  @Input() mode = '';
   @Output() copy = new EventEmitter<any>();
 
   @ViewChild('copyIcon') icon!: MatIcon;
 
   private elRef = inject(ElementRef);
   private clipboard = inject(Clipboard);
+
+  theme = 'theme-0';
+
+  ngOnInit(): void {
+    if (this.extn) {
+      this.theme = 'theme-1';
+    } else if (this.mode.startsWith('pdf')) {
+      this.theme = this.mode;
+    }
+  }
 
   onCopyContent(): void {
     const iconElem = this.icon._elementRef.nativeElement;
