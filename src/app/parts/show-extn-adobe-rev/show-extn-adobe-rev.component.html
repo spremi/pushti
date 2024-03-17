@@ -1,1 +1,11 @@
-<p>show-extn-adobe-rev works!</p>
+<sp-box
+  title="Adobe Archive Revision"
+  [oid]="oid"
+  [extn]="true"
+  [extnCritical]="critical"
+  (copy)="onCopy()">
+
+  <div class="attribute">
+    <div class="attr-value">{{ rev }}</div>
+  </div>
+</sp-box>
