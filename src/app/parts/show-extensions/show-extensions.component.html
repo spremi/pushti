@@ -7,6 +7,12 @@
         [value]="extension.getValue()">
       </sp-show-extn-adobe-ts>
 
+      <sp-show-extn-adobe-rev *ngSwitchCase="'1.2.840.113583.1.1.9.2'"
+        [oid]="extension.getOid()"
+        [critical]="extension.getCritical()"
+        [value]="extension.getValue()">
+      </sp-show-extn-adobe-rev>
+
       <sp-show-extn-authority-info-access *ngSwitchCase="'1.3.6.1.5.5.7.1.1'"
         [oid]="extension.getOid()"
         [critical]="extension.getCritical()"
