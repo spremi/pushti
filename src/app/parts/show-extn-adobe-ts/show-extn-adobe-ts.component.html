@@ -1,1 +1,17 @@
-<p>show-extn-adobe-ts works!</p>
+<sp-box
+  title="Adobe Timestamp"
+  [oid]="oid"
+  [extn]="true"
+  [extnCritical]="critical"
+  (copy)="onCopy()">
+
+  <ng-container *ngIf="url !== null; else adobe_ts_err">
+    <div class="attribute">
+      <div class="attr-value">{{ url | toStr }}</div>
+    </div>
+  </ng-container>
+
+  <ng-template #adobe_ts_err>
+    ...
+  </ng-template>
+</sp-box>
