@@ -34,14 +34,23 @@ export class HeaderComponent implements OnInit, OnDestroy {
     ).subscribe((e) => {
       this.url = e.url;
 
+      if (this.url === '/home') {
+        this.disableCert = false;
+        this.disablePdf = false;
+
+        return;
+      }
+
       if (this.url === '/cert' || this.url.startsWith('/cert/pdf/')) {
         this.disableCert = true;
         this.disablePdf = false;
+
+        return;
       }
 
       if (this.url === '/pdf') {
         this.disableCert = false;
-        this.disablePdf = true
+        this.disablePdf = true;
       }
     });
   }
