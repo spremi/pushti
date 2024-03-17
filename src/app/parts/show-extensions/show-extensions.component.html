@@ -1,6 +1,12 @@
 <sp-box title="EXTENSIONS">
   <div class="columns" *ngFor="let extension of extensions">
     <div [ngSwitch]="extension.getOid()">
+      <sp-show-extn-adobe-ts *ngSwitchCase="'1.2.840.113583.1.1.9.1'"
+        [oid]="extension.getOid()"
+        [critical]="extension.getCritical()"
+        [value]="extension.getValue()">
+      </sp-show-extn-adobe-ts>
+
       <sp-show-extn-authority-info-access *ngSwitchCase="'1.3.6.1.5.5.7.1.1'"
         [oid]="extension.getOid()"
         [critical]="extension.getCritical()"
