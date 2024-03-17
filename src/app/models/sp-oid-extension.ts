@@ -9,6 +9,9 @@
 //
 
 export const SpOidExtension: Record<string, string> = {
+  '1.2.840.113583.1.1.9.1': 'Adobe Timestamp',
+  '1.2.840.113583.1.1.9.2': 'Adobe Archive Revision',
+
   '2.5.29.1': 'Authority Key Identifier (Deprecated)',        // Use .35
   '2.5.29.2': 'Primary Key Attributes (Deprecated)',          // Use .15 or .37
   '2.5.29.3': 'Certificate Policies (Deprecated)',            // Use .32
@@ -47,5 +50,11 @@ export const SpOidExtension: Record<string, string> = {
   '2.5.29.37': 'Extended key usage',
   '2.5.29.46': 'Freshest CRL',
   '2.5.29.54': 'X.509 version 3 certificate extension Inhibit Any-policy',
-  '1.3.6.1.5.5.7.1.1': 'Certificate Authority Information Access'
+
+  '1.3.6.1.4.1.52266.1': 'Legal Entity Identifier',
+  '1.3.6.1.4.1.52266.2': 'Individual Role in the organization',
+
+  '1.3.6.1.5.5.7.1.1': 'Certificate Authority Information Access',
+  '1.3.6.1.5.5.7.1.2': 'Biometric Information',
+  '1.3.6.1.5.5.7.1.3': 'Qualified Certificate Statements',
 };
