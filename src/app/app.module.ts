@@ -78,6 +78,7 @@ import { IconService } from '@services/icon.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ShowExtnAdobeTsComponent } from './parts/show-extn-adobe-ts/show-extn-adobe-ts.component';
 
 @NgModule({
   declarations: [
@@ -124,6 +125,7 @@ import { AppComponent } from './app.component';
     ShowPdfSignComponent,
     ShowPdfSignContainerComponent,
     E404Component,
+    ShowExtnAdobeTsComponent,
   ],
   imports: [
     BrowserModule,
