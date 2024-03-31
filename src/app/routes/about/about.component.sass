@@ -1,5 +1,7 @@
 \:host
-  display: block
+  display: flex
+  flex-direction: column
+
   background-image: linear-gradient(175deg, #fff4e4 8%, #f0f8ee 70%)
 
   width: 100%
@@ -13,62 +15,76 @@
 
   text-align: center
 
-  overflow-y: auto
+  overflow-y: hidden
 
   user-select: none
 
-  .title
-    margin-bottom: 12px
+  .info
+    margin: 0
+    padding: 0
 
-    font-size: 48px
-    font-weight: 600
+    .title
+      margin-bottom: 12px
 
-    line-height: 1.25
+      font-size: 48px
+      font-weight: 600
 
-  .version
-    font-size: 16px
-    font-weight: 400
-    margin-bottom: 12px
+      line-height: 1.25
 
-    line-height: 1.5
+    .version
+      font-size: 16px
+      font-weight: 400
+      margin-bottom: 12px
 
-  .name
-    font-size: 16px
-    font-weight: 500
-    margin-bottom: 12px
+      line-height: 1.5
 
-    line-height: 1.5
+    .name
+      font-size: 16px
+      font-weight: 500
+      margin-bottom: 12px
 
-  .url
-    font-size: 12px
-    font-weight: 500
-    margin-bottom: 12px
+      line-height: 1.5
 
-  img
-    max-height: 192px
-    margin: 16px 0
+    .url
+      font-size: 12px
+      font-weight: 500
+      margin-bottom: 12px
 
-    user-select: none
-    pointer-events: none
+    img
+      max-height: 160px
+      margin: 4px 0
 
+      user-select: none
+      pointer-events: none
 
-  .ok
-    margin: 16px 0
+    .ok
+      margin: 16px 0
 
   .history
     display: flex
     flex-direction: column
-
+    flex: 1
+    overflow: hidden
     margin: 16px
 
-    align-self: stretch
-
     .history-title
-      font-size: 14px
-      font-weight: 500
+      margin: 0 0 8px 0
+      padding: 0 0 4px 0
+
+      font-size: 16px
+      font-weight: 600
       text-align: left
 
+      border-bottom: 1px solid #c0c0c0
+
     .history-text
+      display: block
+      height: 100%
+
       font-size: 12px
       text-align: justify
       overflow-y: auto
+
+      dt
+        font-size: 14px
+        font-weight: 600
