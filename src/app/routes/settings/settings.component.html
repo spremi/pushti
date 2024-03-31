@@ -1,1 +1,36 @@
-<p>settings works!</p>
+<mat-toolbar>
+  <span>Settings</span>
+
+  <span class="h-spacer"></span>
+
+  <button mat-icon-button color="accent"
+      aria-label="Save settings"
+      (click)="onSave()">
+    <mat-icon>save</mat-icon>
+  </button>
+
+  <button mat-icon-button color="primary"
+      aria-label="Close"
+      (click)="onClose()">
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-toolbar>
+
+<div class="items">
+  <mat-slide-toggle
+    [checked]="debug"
+    (change)="toggleDebug($event)">Enable debug</mat-slide-toggle>
+
+  <mat-slide-toggle
+    [checked]="allKeyUsages"
+    (change)="toggleAllKeyUsages($event)">Show all key usages</mat-slide-toggle>
+</div>
+
+<div class="note">
+  <strong>NOTE</strong>
+  <ul type="square">
+    <li>These settings are stored in browser's local storage.</li>
+    <li>Changes apply immediately in the current window only.</li>
+    <li>Unless changes are saved, they won't persist across windows and a browser restart.</li>
+  </ul>
+</div>
