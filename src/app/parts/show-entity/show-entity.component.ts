@@ -31,12 +31,12 @@ export class ShowEntityComponent implements OnChanges {
       if (attr === 'value') {
         this.value = changes[attr].currentValue;
 
+        this.rdn = {};
+
         if (this.value) {
           this.value.getRDN().forEach(dn => {
             this.rdn[dn.key] = dn.value;
           });
-        } else {
-          this.rdn = {};
         }
       }
     }
