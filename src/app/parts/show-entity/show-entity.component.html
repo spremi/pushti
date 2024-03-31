@@ -30,6 +30,10 @@
       <div class="attr-name">Locality</div>
       <div class="attr-value">{{ rdn['L'] }}</div>
     </div>
+    <div class="attribute" *ngIf="rdn['E-mail']">
+      <div class="attr-name">E-mail</div>
+      <div class="attr-value">{{ rdn['E-mail'] }}</div>
+    </div>
   </ng-template>
 
   <ng-template #entity_err>
