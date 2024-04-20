@@ -1,5 +1,5 @@
 <mat-toolbar>
-  <span>{{ pdfName }}</span>
+  <span>{{ pdfName === '' ? 'PDF View' : pdfName }}</span>
 
   <button *ngIf="pdfUrl"
      mat-icon-button
