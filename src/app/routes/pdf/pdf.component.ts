@@ -57,7 +57,6 @@ export class PdfComponent implements OnInit, OnDestroy {
     this.layout$ = this.layoutSvc.columnObserver()
       .pipe(distinctUntilChanged())
       .subscribe(value => {
-        console.log('======= value = ' + value);
         if (value === 1) {
           this.columns = 'small';
         } else {
