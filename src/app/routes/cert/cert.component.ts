@@ -98,8 +98,6 @@ export class CertComponent implements OnInit, OnDestroy {
         } else {
           const pemFile = "cached-pem-" + String(this.cacheId).padStart(2, '0') + '.pem';
 
-          console.log(pem);
-
           let ret = this.fileStore.save(pemFile, 'text/plain', pem);
 
           if (ret) {
