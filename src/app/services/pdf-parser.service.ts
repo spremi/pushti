@@ -147,7 +147,6 @@ export class PdfParserService {
 
     const contentInfo = ContentInfo.fromBER(signBer);
     const signData = new SignedData({ schema: contentInfo.content });
-    console.log(signData);
 
     this.signature = new SpPkcs7Signature();
 
@@ -164,8 +163,6 @@ export class PdfParserService {
     //
     const certs = signData.certificates;
     certs?.forEach(cert => {
-      console.log(cert);
-
       const previewCert = new SpCertPreview();
 
       if (cert instanceof Certificate) {
@@ -238,7 +235,6 @@ export class PdfParserService {
       signature.setValue(new Uint8Array(info.signature.getValue()));
 
       this.signature?.addSignerInfo(signerInfo);
-      console.log(info);
     });
 
     console.log(this.signature);
