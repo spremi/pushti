@@ -82,8 +82,15 @@ export class CertificateParserService {
     //
     // Extract contents between CERT_HEAD (included) and CERT_TAIL(included).
     //
-    let trimPEM = pem.substring(pem.indexOf(this.CERT_HEAD) + this.CERT_HEAD.length);
-    trimPEM = trimPEM.slice(0, trimPEM.indexOf(this.CERT_TAIL));
+    let trimPEM = pem;
+
+    if (trimPEM.includes(this.CERT_HEAD)) {
+      trimPEM = trimPEM.substring(pem.indexOf(this.CERT_HEAD) + this.CERT_HEAD.length);
+    }
+
+    if (trimPEM.includes(this.CERT_TAIL)) {
+      trimPEM = trimPEM.slice(0, trimPEM.indexOf(this.CERT_TAIL));
+    }
 
     try {
       const ber = this.stringToArrayBuffer(atob(trimPEM));
