@@ -92,6 +92,8 @@ export class CertificateParserService {
       trimPEM = trimPEM.slice(0, trimPEM.indexOf(this.CERT_TAIL));
     }
 
+    trimPEM = trimPEM.replace(/[\r\n]/gm, '')
+
     try {
       const ber = this.stringToArrayBuffer(atob(trimPEM));
 
