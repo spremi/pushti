@@ -26,11 +26,34 @@ comforts of your favorite browser.
 * Modern responsive UI.
   * Supports drag-n-drop.
   * Supports pasting certificates from clipboard.
+* Build application as containers based on these platformsL
+  * alpine
+  * debian
 
 ### Planned
 
 * Parse LTV blob in PDF signature.
 * Validate certificates via OCSP.
+
+## Build
+
+### Local build
+
+Build as any typical Angular application. For build in production mode:
+```
+ng build --configuration=production
+```
+
+### Docker containers
+
+To build image based on **alpine**:
+```
+docker compose build pushti-alpine
+```
+To build image based on **debian**:
+```
+docker compose build pushti-debian
+```
 
 ## Limitations
 
