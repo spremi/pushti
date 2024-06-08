@@ -34,8 +34,4 @@ export class ShowSerialNumComponent implements OnChanges {
       }
     }
   }
-
-  onCopy(): void {
-    console.log('Copy clicked!');
-  }
 }

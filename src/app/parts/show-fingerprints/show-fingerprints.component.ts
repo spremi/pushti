@@ -26,8 +26,4 @@ export class ShowFingerprintsComponent implements OnChanges {
       }
     }
   }
-
-  onCopy(): void {
-    console.log('Copy clicked!');
-  }
 }

@@ -2,8 +2,7 @@
   title="Extended Key Usage"
   [oid]="oid"
   [extn]="true"
-  [extnCritical]="critical"
-  (copy)="onCopy()">
+  [extnCritical]="critical">
 
   <ng-container *ngIf="usage && usage.length > 0; else ext_usage_err">
     <div class="attribute" *ngFor="let purpose of usage; index as i;">

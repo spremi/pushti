@@ -1,4 +1,4 @@
-<sp-box title="{{ title }}" (copy)="onCopy()">
+<sp-box title="{{ title }}">
   <ng-container *ngIf="value; then entity_ok else entity_err"></ng-container>
 
   <ng-template #entity_ok>

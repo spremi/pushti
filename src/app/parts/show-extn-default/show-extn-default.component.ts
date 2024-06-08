@@ -40,7 +40,4 @@ export class ShowExtnDefaultComponent implements OnChanges {
       }
     }
   }
-
-  onCopy(): void {
-  }
 }

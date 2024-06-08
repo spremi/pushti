@@ -39,7 +39,4 @@ export class ShowExtnSubjectAltNameComponent implements OnChanges {
       }
     }
   }
-
-  onCopy(): void {
-  }
 }

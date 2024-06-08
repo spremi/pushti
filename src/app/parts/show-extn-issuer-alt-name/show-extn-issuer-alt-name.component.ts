@@ -39,7 +39,4 @@ export class ShowExtnIssuerAltNameComponent {
       }
     }
   }
-
-  onCopy(): void {
-  }
 }

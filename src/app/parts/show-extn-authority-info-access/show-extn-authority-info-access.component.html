@@ -2,8 +2,7 @@
   title="Authority Information Access"
   [oid]="oid"
   [extn]="true"
-  [extnCritical]="critical"
-  (copy)="onCopy()">
+  [extnCritical]="critical">
 
   <ng-container *ngIf="aia; else aia_err">
     <div class="attribute" *ngFor="let item of aia; index as i;">

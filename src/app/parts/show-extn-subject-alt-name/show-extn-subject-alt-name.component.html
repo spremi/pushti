@@ -2,8 +2,7 @@
   title="Subject Alternate Name"
   [oid]="oid"
   [extn]="true"
-  [extnCritical]="critical"
-  (copy)="onCopy()">
+  [extnCritical]="critical">
 
   <ng-container *ngIf="names.length > 0; else salt_name_err">
     <div class="attribute" *ngFor="let name of names; index as i;">

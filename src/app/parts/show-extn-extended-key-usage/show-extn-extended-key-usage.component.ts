@@ -39,7 +39,4 @@ export class ShowExtnExtendedKeyUsageComponent {
       }
     }
   }
-
-  onCopy(): void {
-  }
 }

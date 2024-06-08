@@ -34,8 +34,4 @@ export class ShowVersionComponent implements OnChanges {
       }
     }
   }
-
-  onCopy(): void {
-    console.log('Copy clicked!');
-  }
 }

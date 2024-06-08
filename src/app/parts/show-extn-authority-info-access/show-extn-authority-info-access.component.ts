@@ -45,7 +45,4 @@ export class ShowExtnAuthorityInfoAccessComponent implements OnChanges {
       }
     }
   }
-
-  onCopy(): void {
-  }
 }

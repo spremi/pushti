@@ -41,8 +41,4 @@ export class ShowEntityComponent implements OnChanges {
       }
     }
   }
-
-  onCopy(): void {
-    console.log('Copy clicked!');
-  }
 }

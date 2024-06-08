@@ -2,8 +2,7 @@
   title="Certificate Policy"
   [oid]="oid"
   [extn]="true"
-  [extnCritical]="critical"
-  (copy)="onCopy()">
+  [extnCritical]="critical">
 
   <ng-container *ngIf="policies && policies.length > 0; else policy_err">
     <div class="attribute" *ngFor="let policy of policies; index as i;">

@@ -2,8 +2,7 @@
   title="CRL Distribution Points"
   [oid]="oid"
   [extn]="true"
-  [extnCritical]="critical"
-  (copy)="onCopy()">
+  [extnCritical]="critical">
 
   <ng-container *ngIf="urls && urls.length > 0; else cdp_err">
     <div class="attribute" *ngFor="let url of urls; index as i;">

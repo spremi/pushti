@@ -39,7 +39,4 @@ export class ShowExtnBasicConstraintsComponent implements OnChanges {
       }
     }
   }
-
-  onCopy(): void {
-  }
 }

@@ -36,8 +36,4 @@ export class InputPemComponent implements OnInit, OnDestroy {
       this.update$.unsubscribe();
     }
   }
-
-  onCopy(): void {
-    console.log('Copy clicked!');
-  }
 }

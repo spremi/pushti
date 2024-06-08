@@ -2,8 +2,7 @@
   title="Issuer Alternate Name"
   [oid]="oid"
   [extn]="true"
-  [extnCritical]="critical"
-  (copy)="onCopy()">
+  [extnCritical]="critical">
 
   <ng-container *ngIf="names && names.length > 0; else alt_name_err">
     <div class="attribute" *ngFor="let name of names; index as i;">

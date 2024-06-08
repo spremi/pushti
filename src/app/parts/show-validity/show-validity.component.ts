@@ -37,8 +37,4 @@ export class ShowValidityComponent implements OnChanges {
       }
     }
   }
-
-  onCopy(): void {
-    console.log('Copy clicked!');
-  }
 }

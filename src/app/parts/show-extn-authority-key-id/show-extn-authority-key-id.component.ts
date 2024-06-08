@@ -39,7 +39,4 @@ export class ShowExtnAuthorityKeyIdComponent implements OnChanges {
       }
     }
   }
-
-  onCopy(): void {
-  }
 }

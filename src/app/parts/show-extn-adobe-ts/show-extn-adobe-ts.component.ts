@@ -39,7 +39,4 @@ export class ShowExtnAdobeTsComponent implements OnChanges {
       }
     }
   }
-
-  onCopy(): void {
-  }
 }

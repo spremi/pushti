@@ -33,9 +33,6 @@ export class ShowExtnCertPolicyComponent {
     }
   }
 
-  onCopy(): void {
-  }
-
   private parse(): void {
     if (this.value) {
       const policy = new SpX509ExtnCertPolicy();

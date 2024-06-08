@@ -34,10 +34,6 @@ export class ShowSubjectPublicKeyComponent implements OnChanges {
     }
   }
 
-  onCopy(): void {
-    console.log('Copy clicked!');
-  }
-
   private parse(): void {
     if (this.value) {
       // console.log(this.value);

@@ -46,7 +46,4 @@ export class ShowExtnKeyUsageComponent implements OnChanges {
       }
     }
   }
-
-  onCopy(): void {
-  }
 }

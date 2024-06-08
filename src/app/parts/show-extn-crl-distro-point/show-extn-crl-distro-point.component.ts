@@ -39,7 +39,4 @@ export class ShowExtnCrlDistroPointComponent implements OnChanges {
       }
     }
   }
-
-  onCopy(): void {
-  }
 }

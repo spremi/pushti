@@ -40,7 +40,4 @@ export class ShowExtnNsCommentComponent implements OnChanges {
       }
     }
   }
-
-  onCopy(): void {
-  }
 }

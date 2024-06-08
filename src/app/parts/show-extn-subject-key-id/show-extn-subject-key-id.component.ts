@@ -39,7 +39,4 @@ export class ShowExtnSubjectKeyIdComponent implements OnChanges {
       }
     }
   }
-
-  onCopy(): void {
-  }
 }

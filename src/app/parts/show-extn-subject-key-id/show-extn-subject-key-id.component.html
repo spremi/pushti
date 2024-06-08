@@ -2,8 +2,7 @@
   title="Subject Key Identifier"
   [oid]="oid"
   [extn]="true"
-  [extnCritical]="critical"
-  (copy)="onCopy()">
+  [extnCritical]="critical">
 
   <ng-container *ngIf="keyId && keyId.length > 0; else sub_key_id_err">
     <div class="attribute">

@@ -38,9 +38,4 @@ export class ShowSignatureComponent {
       }
     }
   }
-
-  onCopy(): void {
-    console.log('Copy clicked!');
-  }
-
 }

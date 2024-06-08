@@ -39,8 +39,4 @@ export class ShowExtnAdobeRevComponent implements OnChanges {
       }
     }
   }
-
-  onCopy(): void {
-  }
-
 }
