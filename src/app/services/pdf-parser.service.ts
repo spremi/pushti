@@ -19,11 +19,13 @@ import { SpX509AlgorithmId } from '@models/sp-x509-algorithm-id';
 import { SpPkcs7ContentId } from '@models/sp-pkcs7-content-id';
 import { SpPkcs7SignerInfo } from '@models/sp-pkcs7-signer-info';
 import { SpCertPreview } from '@models/sp-cert-preview';
+import { LogService } from '@services/log.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PdfParserService {
+  readonly TAG = 'PDF-PARSER';
 
   readonly PAT_START = new RegExp("%PDF-1.[0-7]");
   readonly PAT_END = '%EOF\n';
@@ -31,6 +33,8 @@ export class PdfParserService {
   readonly PAT_BYTE_RANGE = new RegExp('/ByteRange\\s*\\[\\s*(.*?)\\s*\\]');
 
   private sanitizer = inject(DomSanitizer);
+
+  private logSvc = inject(LogService);
 
   /**
    * We cannot create an empty/ null instance of Blob.
@@ -100,7 +104,7 @@ export class PdfParserService {
           const byteRange = contents.match(reByteRange);
 
           if (byteRange !== null) {
-            console.log('Byte range = ' + byteRange[1]);
+            this.logSvc.debug(this.TAG, 'Byte range = ' + byteRange[1]);
 
             const range = byteRange[1].split(' ');
             const signStart = parseInt(range[1]) + 1;
@@ -237,7 +241,7 @@ export class PdfParserService {
       this.signature?.addSignerInfo(signerInfo);
     });
 
-    console.log(this.signature);
+    this.logSvc.show(this.TAG, 'signature', this.signature);
   }
 
   /**

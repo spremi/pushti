@@ -13,6 +13,7 @@ import { FileDropCode, FileDropStatus, FileDropType, initFileDropStatus } from '
 import { FileMimesCert, FileMimesPdf } from '@models/file-mimes';
 import { DropOverlayService } from '@services/drop-overlay.service';
 import { FileStoreService } from '@services/file-store.service';
+import { LogService } from '@services/log.service';
 import { interval, takeWhile } from 'rxjs';
 
 @Component({
@@ -24,6 +25,8 @@ export class DropZoneComponent implements OnInit, AfterViewInit {
   @Input({ required: false }) mode!: string;
   @Output() status = new EventEmitter<FileDropStatus>();
 
+  readonly TAG = 'DROP_ZONE';
+
   readonly MODE_CERT = 'cert';
   readonly MODE_PDF = 'pdf';
 
@@ -33,6 +36,8 @@ export class DropZoneComponent implements OnInit, AfterViewInit {
 
   private fileStore = inject(FileStoreService);
   private dropOverlay = inject(DropOverlayService);
+
+  private logSvc = inject(LogService);
 
   prompt = this.PROMPT_DEFAULT;
 
@@ -135,7 +140,7 @@ export class DropZoneComponent implements OnInit, AfterViewInit {
     const fileName = file.name;
     const fileType = file.type;
 
-    console.log('Reading file ' + fileName + ' as ' + fileType);
+    this.logSvc.debug(this.TAG, 'Reading file ' + fileName + ' as ' + fileType);
 
     const reader = new FileReader();
 

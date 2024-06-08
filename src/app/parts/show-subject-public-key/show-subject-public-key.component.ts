@@ -40,7 +40,7 @@ export class ShowSubjectPublicKeyComponent implements OnChanges {
 
   private parse(): void {
     if (this.value) {
-      console.log(this.value);
+      // console.log(this.value);
 
       this.algorithm = this.value.getAlgorithmId().getName();
 

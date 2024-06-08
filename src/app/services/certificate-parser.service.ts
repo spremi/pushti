@@ -8,7 +8,7 @@
 // (c) Copyright 2023 Sanjeev Premi.
 //
 
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { SpOidBaseAlgorithmECDSA, SpOidBaseAlgorithmRSA } from '@models/sp-oid-algorithm';
 import { SpX509AlgorithmId } from '@models/sp-x509-algorithm-id';
 import { SpX509Certificate } from '@models/sp-x509-certificate';
@@ -20,6 +20,7 @@ import { SpX509Signature } from '@models/sp-x509-signature';
 import { SpX509UniqueId } from '@models/sp-x509-unique-id';
 import { SpX509Validity } from '@models/sp-x509-validity';
 import { SpX509Version } from '@models/sp-x509-version';
+import { LogService } from '@services/log.service';
 
 import { Certificate, ECPublicKeyJson, RSAPublicKeyJson } from 'pkijs';
 import { Convert } from 'pvtsutils';
@@ -30,6 +31,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CertificateParserService {
+  readonly TAG = 'CERT-PARSER';
 
   readonly CERT_HEAD = '-----BEGIN CERTIFICATE-----';
   readonly CERT_TAIL = '-----END CERTIFICATE-----';
@@ -51,6 +53,8 @@ export class CertificateParserService {
   private pem = '';
 
   private count = 0;
+
+  private logSvc = inject(LogService);
 
   constructor() { }
 
@@ -75,7 +79,7 @@ export class CertificateParserService {
   }
 
   public parsePEM(name: string, pem: string): boolean {
-    console.log('Parsing PEM');
+    this.logSvc.debug(this.TAG, 'Parsing PEM');
 
     let ret = false;
 
@@ -117,7 +121,7 @@ export class CertificateParserService {
   }
 
   public parseBER(name: string, ber: string): boolean {
-    console.log('Parsing BER');
+    this.logSvc.debug(this.TAG, 'Parsing BER');
 
     let ret = false;
 
@@ -170,7 +174,7 @@ export class CertificateParserService {
     //
     // Version
     //
-    console.log(this.cert.version);
+    this.logSvc.debug(this.TAG, 'Not before = ' + this.cert.version);
     const version = new SpX509Version();
     version.set(this.cert.version);
 
@@ -179,7 +183,7 @@ export class CertificateParserService {
     //
     // Serial number
     //
-    console.log(this.cert.serialNumber.toBigInt().toString(16));
+    this.logSvc.debug(this.TAG, 'Serial Num = ' + this.cert.serialNumber.toBigInt().toString(16));
     const serialNumber = new SpX509SerialNumber();
     serialNumber.set(this.cert.serialNumber.valueBlock.valueHexView);
 
@@ -188,8 +192,9 @@ export class CertificateParserService {
     //
     // Validity
     //
-    console.log(this.cert.notBefore);
-    console.log(this.cert.notAfter);
+    this.logSvc.debug(this.TAG, 'Not before = ' + this.cert.notBefore);
+    this.logSvc.debug(this.TAG, 'Not after = ' + this.cert.notAfter);
+
     const validity = new SpX509Validity();
     validity.setNotBefore(this.cert.notBefore.value);
     validity.setNotBefore(this.cert.notAfter.value);
@@ -200,8 +205,8 @@ export class CertificateParserService {
     // Issuer
     //
     this.cert.issuer.typesAndValues.forEach(arg => {
-      console.log(arg.type);
-      console.log(arg.value.valueBlock.value);
+      this.logSvc.debug(this.TAG, 'Issuer OID = ' + arg.type);
+      this.logSvc.debug(this.TAG, 'Issuer Value = ' + arg.value.valueBlock.value);
 
       if (this.parsedCert) {
         this.parsedCert.getIssuer().addRDN(arg.type, arg.value.valueBlock.value);
@@ -212,8 +217,8 @@ export class CertificateParserService {
     // Subject
     //
     this.cert.subject.typesAndValues.forEach(arg => {
-      console.log(arg.type);
-      console.log(arg.value.valueBlock.value);
+      this.logSvc.debug(this.TAG, 'Subject OID = ' + arg.type);
+      this.logSvc.debug(this.TAG, 'Subject Value = ' + arg.value.valueBlock.value);
 
       if (this.parsedCert) {
         this.parsedCert.getSubject().addRDN(arg.type, arg.value.valueBlock.value);
@@ -223,8 +228,8 @@ export class CertificateParserService {
     //
     // Subject Public Key Info
     //
-    console.log(this.cert.subjectPublicKeyInfo.algorithm.algorithmId);
-    console.log(this.cert.subjectPublicKeyInfo.subjectPublicKey.valueBlock.valueHexView);
+    this.logSvc.show(this.TAG, 'AlgorithmId', this.cert.subjectPublicKeyInfo.algorithm.algorithmId);
+    this.logSvc.show(this.TAG, 'Subject Public Key', this.cert.subjectPublicKeyInfo.subjectPublicKey.valueBlock.valueHexView);
 
     const subjectPublicKeyAlgoId = new SpX509AlgorithmId();
     subjectPublicKeyAlgoId.setOid(this.cert.subjectPublicKeyInfo.algorithm.algorithmId);
@@ -307,14 +312,14 @@ export class CertificateParserService {
     //
     // Unique ID
     //
-    console.log(this.cert.issuerUniqueID);
+    this.logSvc.show(this.TAG, 'Issuer Unique Id', this.cert.issuerUniqueID);
     if (this.cert.issuerUniqueID) {
       const issuerUniqueId = new SpX509UniqueId();
       //TODO
       this.parsedCert.setIssuerUID(issuerUniqueId);
     }
 
-    console.log(this.cert.subjectUniqueID);
+    this.logSvc.show(this.TAG, 'Subject Unique Id', this.cert.subjectUniqueID);
     if (this.cert.subjectUniqueID) {
       const subjectUniqueId = new SpX509UniqueId();
       //TODO
@@ -325,10 +330,10 @@ export class CertificateParserService {
     // Extensions
     //
     if (this.cert.extensions) {
-      console.log('Certificate has extensions');
+      this.logSvc.debug(this.TAG, 'Certificate has extensions');
 
       this.cert.extensions.forEach(extension => {
-        console.log(extension);
+        this.logSvc.show(this.TAG, 'Extension', extension);
 
         const extObj = new SpX509Extension(extension.extnID,
           extension.critical,
@@ -343,13 +348,13 @@ export class CertificateParserService {
     //
     // Signature
     //
-    console.log(this.cert.signatureAlgorithm);
-    console.log(this.cert.signatureAlgorithm.algorithmId);
+    this.logSvc.show(this.TAG, 'Signature Algorithm', this.cert.signatureAlgorithm);
     const algoId = new SpX509AlgorithmId();
     algoId.setOid(this.cert.signatureAlgorithm.algorithmId);
 
-    console.log(this.cert.signature);
-    console.log(this.cert.signatureValue);
+    this.logSvc.show(this.TAG, 'Signature', this.cert.signature);
+    this.logSvc.show(this.TAG, 'Signature Value', this.cert.signatureValue);
+
     const certSignature = new SpX509Signature();
 
     certSignature.setAlgorithmId(algoId);

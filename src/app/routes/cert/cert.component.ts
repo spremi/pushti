@@ -16,6 +16,7 @@ import { CacheService } from '@services/cache.service';
 import { CertificateParserService } from '@services/certificate-parser.service';
 import { FileStoreService } from '@services/file-store.service';
 import { LayoutService } from '@services/layout.service';
+import { LogService } from '@services/log.service';
 import { Subscription, distinctUntilChanged, filter } from 'rxjs';
 
 @Component({
@@ -25,6 +26,8 @@ import { Subscription, distinctUntilChanged, filter } from 'rxjs';
 })
 export class CertComponent implements OnInit, OnDestroy {
 
+  readonly TAG = 'CERT';
+
   private activatedRoute = inject(ActivatedRoute);
 
   private fileStore = inject(FileStoreService);
@@ -32,6 +35,7 @@ export class CertComponent implements OnInit, OnDestroy {
   private certParser = inject(CertificateParserService);
   private layoutSvc = inject(LayoutService);
   private cacheSvc = inject(CacheService);
+  private logSvc = inject(LogService);
 
   readonly ACCEPT_EXTENSIONS = [
     '.ber',
@@ -150,7 +154,7 @@ export class CertComponent implements OnInit, OnDestroy {
     const fileName = file.name;
     const fileType = file.type;
 
-    console.log('Reading file ' + fileName + ' as ' + fileType);
+    this.logSvc.debug(this.TAG, 'Reading file ' + fileName + ' as ' + fileType);
 
     const reader = new FileReader();
 

@@ -14,6 +14,7 @@ import { SafeResourceUrl } from '@angular/platform-browser';
 import { SpPkcs7Signature } from '@models/sp-pkcs7-signature';
 import { FileStoreService } from '@services/file-store.service';
 import { LayoutService } from '@services/layout.service';
+import { LogService } from '@services/log.service';
 import { PdfParserService } from '@services/pdf-parser.service';
 import { Subscription, distinctUntilChanged } from 'rxjs';
 
@@ -24,6 +25,8 @@ import { Subscription, distinctUntilChanged } from 'rxjs';
 })
 export class PdfComponent implements OnInit, OnDestroy {
 
+  readonly TAG = 'PDF';
+
   readonly ACCEPT_EXTENSIONS = [
     '.pdf',
   ].join(',');
@@ -32,6 +35,7 @@ export class PdfComponent implements OnInit, OnDestroy {
   private snackBar = inject(MatSnackBar);
   private pdfParser = inject(PdfParserService);
   private layoutSvc = inject(LayoutService);
+  private logSvc = inject(LogService);
 
   private pdfUpdate$!: Subscription;
   private layout$!: Subscription;
@@ -89,7 +93,7 @@ export class PdfComponent implements OnInit, OnDestroy {
     const fileName = file.name;
     const fileType = file.type;
 
-    console.log('Reading file ' + fileName + ' as ' + fileType);
+    this.logSvc.debug(this.TAG, 'Reading file ' + fileName + ' as ' + fileType);
 
     const reader = new FileReader();
 
