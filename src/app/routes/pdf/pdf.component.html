@@ -1,14 +1,6 @@
 <mat-toolbar>
   <span>{{ pdfName === '' ? 'PDF View' : pdfName }}</span>
 
-  <button *ngIf="pdfUrl"
-     mat-icon-button
-    class="clear"
-    (click)="onClear()"
-    aria-label="Clear PDF">
-    <mat-icon>close</mat-icon>
-  </button>
-
   <span class="h-spacer"></span>
 
   <input type="file" #fileInput
@@ -17,11 +9,18 @@
     [accept]="ACCEPT_EXTENSIONS"
     (change)="onFileSelected($event)" />
 
-    <button mat-mini-fab color="accent"
-       aria-label="Upload file"
-       (click)="fileInput.click()">
-      <mat-icon>upload</mat-icon>
-    </button>
+  <button mat-icon-button color="accent"
+    aria-label="Upload file"
+    (click)="fileInput.click()">
+    <mat-icon>upload</mat-icon>
+  </button>
+
+  <button *ngIf="pdfUrl"
+    mat-icon-button color="primary"
+    (click)="onClear()"
+    aria-label="Clear PDF">
+    <mat-icon>close</mat-icon>
+  </button>
 </mat-toolbar>
 
 <sp-filler *ngIf="!pdfUrl" select="pdf"></sp-filler>
