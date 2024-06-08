@@ -1,0 +1,12 @@
+#
+# pushti
+#
+# File & directories to be ignored while building docker image.
+#
+
+.git
+.vscode
+.angular
+
+art
+node_modules

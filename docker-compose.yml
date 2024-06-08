@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+
+  pushti-alpine:
+    image: spremi/pushti-alpine
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.alpine
+    ports:
+      - 80:80
+
+  pushti-debian:
+    image: spremi/pushti-debian
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.debian
+    ports:
+      - 80:80
