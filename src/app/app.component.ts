@@ -13,6 +13,7 @@ import { DropOverlayService } from '@services/drop-overlay.service';
 import { LayoutService } from '@services/layout.service';
 
 import { PreviousRouteService } from '@services/previous-route.service';
+import { SettingsService } from '@services/settings.service';
 
 @Component({
   selector: 'sp-root',
@@ -26,6 +27,8 @@ export class AppComponent implements OnInit, OnDestroy {
   private body!: ElementRef;
 
   private dropOverlay = inject(DropOverlayService);
+
+  private settingsSvc = inject(SettingsService);
 
   @HostListener('dragenter', ['$event'])
   onDragEnter(event: DragEvent) {
@@ -42,6 +45,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.layoutSvc.init();
+    this.settingsSvc.init();
   }
 
   ngOnDestroy(): void {
