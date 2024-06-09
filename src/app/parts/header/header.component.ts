@@ -51,6 +51,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
       if (this.url === '/pdf') {
         this.disableCert = false;
         this.disablePdf = true;
+
+        return;
+      }
+
+      if (this.url === '/settings') {
+        this.disableCert = false;
+        this.disablePdf = false;
       }
     });
   }
