@@ -13,11 +13,13 @@ import { SpOidPolicyQualifier } from '@models/sp-oid-policy-qualifier';
 import { CertificatePolicies } from 'pkijs';
 
 export interface SpCertificatePolicyQualifier {
+  oid: string;
   name: string;
   value: string;
 }
 
 export interface SpCertificatePolicy {
+  oid: string;
   name: string;
   qualifiers: SpCertificatePolicyQualifier[];
 }
@@ -33,7 +35,8 @@ export class SpX509ExtnCertPolicy {
 
     certPolicies.certificatePolicies.forEach(policy => {
       const policyObj: SpCertificatePolicy = {
-        name: SpOidPolicyIdentifier[policy.policyIdentifier],
+        oid: policy.policyIdentifier,
+        name: SpOidPolicyIdentifier[policy.policyIdentifier] ?? 'Unknown policy',
         qualifiers: []
       };
 
@@ -43,7 +46,8 @@ export class SpX509ExtnCertPolicy {
       if (policy.policyQualifiers) {
         policy.policyQualifiers.forEach(q => {
           const qualifierObj = {
-            name: SpOidPolicyQualifier[q.policyQualifierId],
+            oid: q.policyQualifierId,
+            name: SpOidPolicyQualifier[q.policyQualifierId] ?? 'Unknown qualifier',
             value: q.qualifier.toJSON()?.valueBlock?.value,
           };
 
