@@ -4,44 +4,54 @@
   [extn]="true"
   [extnCritical]="critical">
 
-  <div class="attribute">
+  <div class="attribute"
+    *ngIf="showAll || (!showAll && keyUsage?.isDigitalSignature())">
     <div class="attr-name">Digital Signature</div>
     <div class="attr-value">{{ keyUsage?.isDigitalSignature() }}</div>
   </div>
-  <div class="attribute">
+  <div class="attribute"
+    *ngIf="showAll || (!showAll && keyUsage?.isContentCommitment())">
     <div class="attr-name">Content Commitment<sup>*</sup></div>
     <div class="attr-value">{{ keyUsage?.isContentCommitment() }}</div>
   </div>
-  <div class="attribute">
+  <div class="attribute"
+    *ngIf="showAll || (!showAll && keyUsage?.isKeyEncipherment())">
     <div class="attr-name">Key Encipherment</div>
     <div class="attr-value">{{ keyUsage?.isKeyEncipherment() }}</div>
   </div>
-  <div class="attribute">
+  <div class="attribute"
+    *ngIf="showAll || (!showAll && keyUsage?.isDataEncipherment())">
     <div class="attr-name">Data Encipherment</div>
     <div class="attr-value">{{ keyUsage?.isDataEncipherment() }}</div>
   </div>
-  <div class="attribute">
-    <div class="attr-name">Key Agreement</div>
+    <div class="attribute"
+    *ngIf="showAll || (!showAll && keyUsage?.isKeyAgreement())">
+  <div class="attr-name">Key Agreement</div>
     <div class="attr-value">{{ keyUsage?.isKeyAgreement() }}</div>
   </div>
-  <div class="attribute">
+  <div class="attribute"
+    *ngIf="showAll || (!showAll && keyUsage?.isKeyCertSign())">
     <div class="attr-name">Certificate Signing</div>
     <div class="attr-value">{{ keyUsage?.isKeyCertSign() }}</div>
   </div>
-  <div class="attribute">
+  <div class="attribute"
+    *ngIf="showAll || (!showAll && keyUsage?.isCrlSign())">
     <div class="attr-name">CRL Signing</div>
     <div class="attr-value">{{ keyUsage?.isCrlSign() }}</div>
   </div>
-  <div class="attribute">
+  <div class="attribute"
+    *ngIf="showAll || (!showAll && keyUsage?.isEncipherOnly())">
     <div class="attr-name">Encipher Only</div>
     <div class="attr-value">{{ keyUsage?.isEncipherOnly() }}</div>
   </div>
-  <div class="attribute">
+  <div class="attribute"
+    *ngIf="showAll || (!showAll && keyUsage?.isDecipherOnly())">
     <div class="attr-name">Decipher Only</div>
     <div class="attr-value">{{ keyUsage?.isDecipherOnly() }}</div>
   </div>
 
-  <div class="note">
+  <div class="note"
+    *ngIf="showAll || (!showAll && keyUsage?.isContentCommitment())">
     <sup>*</sup>Also known as Non-repudiation
   </div>
 </sp-box>

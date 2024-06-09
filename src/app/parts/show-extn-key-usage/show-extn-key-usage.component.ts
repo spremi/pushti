@@ -8,8 +8,9 @@
 // (c) Copyright 2023 Sanjeev Premi.
 //
 
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges, inject } from '@angular/core';
 import { SpX509ExtnKeyUsage } from '@models/sp-x509-extn-key-usage';
+import { SettingsService } from '@services/settings.service';
 
 @Component({
   selector: 'sp-show-extn-key-usage',
@@ -21,19 +22,15 @@ export class ShowExtnKeyUsageComponent implements OnChanges {
   @Input() critical = false;
   @Input() value!: Uint8Array;
 
+  private settingsSvc = inject(SettingsService);
+
   keyUsage: SpX509ExtnKeyUsage | null = null;
 
-  digitalSignature = false;
-  contentCommitment = false;
-  keyEncipherment = false;
-  dataEncipherment = false;
-  keyAgreement = false;
-  keyCertSign = false;
-  crlSign = false;
-  encipherOnly = false;
-  decipherOnly = false;
+  showAll = true;
 
   ngOnChanges(changes: SimpleChanges): void {
+    this.showAll = this.settingsSvc.getAllKeyUsages();
+
     this.keyUsage = new SpX509ExtnKeyUsage();
 
     for (const attr in changes) {
