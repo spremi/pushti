@@ -8,10 +8,9 @@
     <div class="attribute" *ngFor="let policy of policies; index as i;">
       <div class="attr-name">({{ i + 1 }})</div>
       <div class="attr-value">
-        <!-- TODO: Handle other oids -->
-        <strong>{{ policy.name }}</strong>
+        <strong>{{ policy.name }} (<span class="oid">{{ policy.oid }}</span>)</strong>
         <dl *ngFor="let qualifier of policy.qualifiers;">
-          <dt>{{ qualifier.name }}</dt>
+          <dt>{{ qualifier.name }} (<span class="oid">{{ qualifier.oid }}</span>)</dt>
           <dd>{{ qualifier.value }}</dd>
         </dl>
       </div>
