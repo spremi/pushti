@@ -197,7 +197,7 @@ export class CertificateParserService {
 
     const validity = new SpX509Validity();
     validity.setNotBefore(this.cert.notBefore.value);
-    validity.setNotBefore(this.cert.notAfter.value);
+    validity.setNotAfter(this.cert.notAfter.value);
 
     this.parsedCert.setValidity(validity);
 
