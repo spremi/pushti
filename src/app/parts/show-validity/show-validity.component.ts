@@ -29,7 +29,7 @@ export class ShowValidityComponent implements OnChanges {
 
         if (this.value) {
           this.notBefore = this.value.getNotBefore();
-          this.notAfter = this.value.getNotBefore();
+          this.notAfter = this.value.getNotAfter();
         } else {
           this.notBefore = new Date(0);
           this.notAfter = new Date(0);
