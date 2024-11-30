@@ -7,7 +7,7 @@
       <div class="attr-value">{{ algorithm }}</div>
     </div>
 
-    <ng-container *ngIf="rsaKey !== null">
+    <ng-container *ngIf="rsaKey">
       <div class="attribute">
         <div class="attr-name">Modulus</div>
         <div class="attr-value">{{ rsaKey.size }}</div>
@@ -22,7 +22,7 @@
       </div>
     </ng-container>
 
-    <ng-container *ngIf="ecKey !== null">
+    <ng-container *ngIf="ecKey">
       <div class="attribute">
         <div class="attr-name">Curve</div>
         <div class="attr-value">{{ ecKey.curve }}</div>
