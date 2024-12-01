@@ -14,8 +14,17 @@
   </div>
 
   <div class="para">
-    You can also paste certificate in PEM format here.
+    You can also paste certificate in PEM format below:
   </div>
+  <textarea #pemText class="pem"
+    rows="5"
+    cols="82"
+    readonly=true
+    wrap="soft"
+    placeholder="Paste certificate in PEM format. BEGIN & END headers are not necessary."
+    [value]="pem"
+    (paste)="onPastePEM($event)"
+    ></textarea>
 </ng-container>
 
 <ng-container *ngIf="select === 'pdf'">
