@@ -24,7 +24,7 @@
 </mat-toolbar>
 
 <div class="parse-area" [ngClass]="[ flash ? 'flash' : '']">
-  <sp-filler *ngIf="!certificate" select="cert"></sp-filler>
+  <sp-filler *ngIf="!certificate" select="cert" [clear]="clearPEM"></sp-filler>
 
   <div *ngIf="certificate" class="columns" [ngClass]="columns">
     <sp-show-version

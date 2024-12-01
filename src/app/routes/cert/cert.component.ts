@@ -51,6 +51,8 @@ export class CertComponent implements OnInit, OnDestroy {
 
   flash = false;
 
+  clearPEM = false;
+
   columns = 'cols-1';
 
   private update$!: Subscription;
@@ -78,6 +80,14 @@ export class CertComponent implements OnInit, OnDestroy {
           this.certFile = CLIP_FILE;
         } else {
           this.snackBar.open('Pasted \'text\' is not valid PEM');
+
+          setTimeout(() => {
+            this.clearPEM = true;
+          }, 1000);
+
+          setTimeout(() => {
+            this.clearPEM = false;
+          }, 1500);
         }
       } else {
         this.snackBar.open('No \'text\' in clipboard');
