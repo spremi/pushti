@@ -4,7 +4,7 @@
 # Stage 1: Build application
 #
 
-FROM node:bookworm-slim as build
+FROM node:bookworm-slim AS build
 
 WORKDIR /usr/src/pushti
 
