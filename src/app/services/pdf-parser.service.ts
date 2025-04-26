@@ -116,11 +116,11 @@ export class PdfParserService {
             this.internalParse(sign);
 
             this.isSigned = true;
-
-            ret = true;
           }
 
           this.update$.next(++this.count);
+
+          ret = true;
         }
       } catch (e) {
         if (e instanceof Error) {
