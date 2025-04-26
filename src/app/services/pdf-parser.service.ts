@@ -28,7 +28,7 @@ export class PdfParserService {
   readonly TAG = 'PDF-PARSER';
 
   readonly PAT_START = new RegExp("%PDF-1.[0-7]");
-  readonly PAT_END = '%EOF\n';
+  readonly PAT_END = new RegExp("%EOF\\r?\\n?$");
 
   readonly PAT_BYTE_RANGE = new RegExp('/ByteRange\\s*\\[\\s*(.*?)\\s*\\]');
 
@@ -84,9 +84,9 @@ export class PdfParserService {
     this.signature = null;
 
     const fileStart = contents.slice(0, 9);
-    const fileEnd = contents.slice(-5);
+    const fileEnd = contents.slice(-6);
 
-    if (this.PAT_START.test(fileStart) && (this.PAT_END === fileEnd)) {
+    if (this.PAT_START.test(fileStart) && (this.PAT_END.test(fileEnd))) {
       try {
         const buf = Uint8Array.from(contents, c => c.charCodeAt(0));
         const blob: Blob = new Blob([buf], { type: 'application/pdf' });
