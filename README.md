@@ -58,6 +58,7 @@ docker compose build pushti-debian
 ## Limitations
 
 * PDF files that cannot be loaded by the browser cannot be parsed.
+* Password protected PDF files are not supported.
 * Not all extensions are currently supported.
 * Slow progress.
   * This is one of many personal projects. Updates would be slow.
