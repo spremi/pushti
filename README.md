@@ -80,6 +80,6 @@ of this tool over ~3 years (incl. Jupyter Notebook). Finally, settled
 with browser as it has least resistance for adoption.
 
 ## License
-Copyright (c) 2023-2024, Sanjeev Premi.
+Copyright (c) 2023-2025, Sanjeev Premi.
 
 Source available under the terms of BSD-3-Clause license.
