@@ -9,7 +9,7 @@
 //
 
 import {
-  Component, ElementRef, EventEmitter, HostBinding, Inject, Input, OnInit, Output, ViewChild, inject
+  Component, ElementRef, EventEmitter, HostBinding, Inject, Input, Output, ViewChild, inject
 } from '@angular/core';
 
 import { Clipboard } from '@angular/cdk/clipboard';
@@ -25,7 +25,7 @@ import { BOX_LEVEL, BOX_LEVEL_PROVIDER } from './level.token';
     BOX_LEVEL_PROVIDER
   ]
 })
-export class BoxComponent implements OnInit {
+export class BoxComponent {
   @Input() title = '';
   @Input() oid = '';
   @Input() extn = false;
@@ -51,13 +51,6 @@ export class BoxComponent implements OnInit {
     this.level = level;
   }
 
-  ngOnInit(): void {
-    if (this.extn) {
-      this.theme = 'theme-1';
-    } else if (this.mode.startsWith('pdf')) {
-      this.theme = this.mode;
-    }
-  }
 
   onCopyContent(): void {
     const iconElem = this.icon._elementRef.nativeElement;
