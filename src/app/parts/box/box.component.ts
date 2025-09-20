@@ -8,15 +8,22 @@
 // (c) Copyright 2023 Sanjeev Premi.
 //
 
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, inject } from '@angular/core';
+import {
+  Component, ElementRef, EventEmitter, HostBinding, Inject, Input, OnInit, Output, ViewChild, inject
+} from '@angular/core';
 
 import { Clipboard } from '@angular/cdk/clipboard';
 import { MatIcon } from '@angular/material/icon';
 
+import { BOX_LEVEL, BOX_LEVEL_PROVIDER } from './level.token';
+
 @Component({
   selector: 'sp-box',
   templateUrl: './box.component.html',
-  styleUrls: ['./box.component.sass']
+  styleUrls: ['./box.component.sass'],
+  providers: [
+    BOX_LEVEL_PROVIDER
+  ]
 })
 export class BoxComponent implements OnInit {
   @Input() title = '';
@@ -28,10 +35,21 @@ export class BoxComponent implements OnInit {
 
   @ViewChild('copyIcon') icon!: MatIcon;
 
+  @HostBinding('class')
+  get hostClass() {
+    return `level-${this.level}`;
+  }
+
   private elRef = inject(ElementRef);
   private clipboard = inject(Clipboard);
 
   theme = 'theme-0';
+
+  level: number;
+
+  constructor(@Inject(BOX_LEVEL) level: number) {
+    this.level = level;
+  }
 
   ngOnInit(): void {
     if (this.extn) {
