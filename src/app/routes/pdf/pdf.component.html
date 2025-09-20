@@ -25,7 +25,7 @@
 
 <sp-filler *ngIf="!pdfUrl" select="pdf"></sp-filler>
 
-<div class="parse-area" *ngIf="pdfUrl" [ngClass]="columns">
+<div class="parse-area pdf" *ngIf="pdfUrl" [ngClass]="columns">
   <object type="application/pdf" class="pdf" [data]="pdfUrl"></object>
 
   <div class="parse-info">
