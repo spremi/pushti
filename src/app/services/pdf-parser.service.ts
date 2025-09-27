@@ -14,11 +14,16 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 import { Certificate, ContentInfo, IssuerAndSerialNumber, SignedData } from 'pkijs';
 
+import { OID_PKCS_SIGN_TIMESTAMP, OID_PKCS_SIGNING_TIME } from '@models/sp-oid-pkcs';
 import { SpPkcs7Signature } from '@models/sp-pkcs7-signature';
 import { SpX509AlgorithmId } from '@models/sp-x509-algorithm-id';
 import { SpPkcs7ContentId } from '@models/sp-pkcs7-content-id';
+import { SpPkcs7SignerId } from '@models/sp-pkcs7-signer-id';
 import { SpPkcs7SignerInfo } from '@models/sp-pkcs7-signer-info';
 import { SpCertPreview } from '@models/sp-cert-preview';
+import { SpPkcs9TimestampInfo } from '@models/sp-pkcs9-timestamp-info';
+import { SpX509Entity } from '@models/sp-x509-entity';
+import { SpX509SerialNumber } from '@models/sp-x509-serial-number';
 import { LogService } from '@services/log.service';
 
 @Injectable({
@@ -208,6 +213,78 @@ export class PdfParserService {
       signature.setValue(new Uint8Array(info.signature.getValue()));
 
       this.signature?.addSignerInfo(signerInfo);
+
+      //
+      // Embedded timestamp ?
+      //
+      info.unsignedAttrs?.attributes.forEach(attr => {
+        if (attr.type === OID_PKCS_SIGN_TIMESTAMP) {
+          //
+          // Found embedded timestamp
+          //
+          const tsInfo = new SpPkcs9TimestampInfo();
+
+          const tsContentBer = attr.values[0].toBER(false);
+          const tsContentInfo = ContentInfo.fromBER(tsContentBer);
+
+          const tsSignData = new SignedData({ schema: tsContentInfo.content });
+
+          tsSignData.signerInfos.forEach(tsSignerInfo => {
+            tsSignerInfo.signedAttrs?.attributes.forEach(tsAttr => {
+              if (tsAttr.type === OID_PKCS_SIGNING_TIME) {
+                tsInfo.setTimestamp(tsAttr.values[0].toDate());
+              }
+            });
+
+            //
+            // Issuer of certificate.
+            //
+            if (tsSignerInfo.sid instanceof IssuerAndSerialNumber) {
+              const issuer = new SpX509Entity();
+
+              tsSignerInfo.sid.issuer.typesAndValues.forEach(arg => {
+                issuer.addRDN(arg.type, arg.value.valueBlock.value);
+              })
+
+              const issuerSN = new SpX509SerialNumber();
+              issuerSN.set(tsSignerInfo.sid.serialNumber.valueBlock.valueHexView);
+
+              const signerId = new SpPkcs7SignerId();
+              signerId.setIssuer(issuer);
+              signerId.setIssuerSN(issuerSN);
+
+              tsInfo.setSignerId(signerId);
+            }
+
+            //
+            // Digest algorithm.
+            //
+            const tsDigestAlgo = new SpX509AlgorithmId();
+            tsDigestAlgo.setOid(tsSignerInfo.digestAlgorithm.algorithmId);
+            tsInfo.setDigestAlgo(tsDigestAlgo);
+
+            //
+            // Signature algorithm.
+            //
+            const tsSignAlgo = new SpX509AlgorithmId();
+            tsSignAlgo.setOid(tsSignerInfo.signatureAlgorithm.algorithmId);
+            tsInfo.setSignAlgo(tsSignAlgo);
+          });
+
+          //
+          // Certificate(s).
+          //
+          tsSignData.certificates?.forEach(cert => {
+            if (cert instanceof Certificate) {
+              const previewCert = this.getCertPreview(cert);
+
+              tsInfo.addCertificate(previewCert);
+            }
+          });
+
+          this.signature?.setTimestampInfo(tsInfo);
+        }
+      });
     });
 
     this.logSvc.show(this.TAG, 'signature', this.signature);
