@@ -81,6 +81,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ShowExtnAdobeTsComponent } from './parts/show-extn-adobe-ts/show-extn-adobe-ts.component';
 import { ShowExtnAdobeRevComponent } from './parts/show-extn-adobe-rev/show-extn-adobe-rev.component';
+import { ShowPdfSignTimestampComponent } from './parts/show-pdf-sign-timestamp/show-pdf-sign-timestamp.component';
 
 @NgModule({
   declarations: [
@@ -129,6 +130,7 @@ import { ShowExtnAdobeRevComponent } from './parts/show-extn-adobe-rev/show-extn
     E404Component,
     ShowExtnAdobeTsComponent,
     ShowExtnAdobeRevComponent,
+    ShowPdfSignTimestampComponent,
   ],
   imports: [
     BrowserModule,
