@@ -30,15 +30,13 @@
 
   <div class="parse-info">
     <ng-container *ngIf="pdfSigned">
-      <div class="sign-ok">
-        Document is digitally signed.
-      </div>
+      <img class="sign-ok" src="assets/images/pushti-digital-sign.svg">
 
       <sp-show-pdf-sign [value]="pdfSignature"></sp-show-pdf-sign>
     </ng-container>
 
     <div class="sign-na" *ngIf="!pdfSigned">
-      Document is not digitally signed.
+      <img src="assets/images/pushti-no-digital-sign.svg">
     </div>
   </div>
 </div>
