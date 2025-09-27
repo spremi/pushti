@@ -8,7 +8,7 @@
 // (c) Copyright 2023 Sanjeev Premi.
 //
 
-import { Component, Input, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { SpX509ExtnEntityAltName } from '@models/sp-x509-extn-entity-alt-name';
 
 @Component({
@@ -16,7 +16,7 @@ import { SpX509ExtnEntityAltName } from '@models/sp-x509-extn-entity-alt-name';
   templateUrl: './show-extn-issuer-alt-name.component.html',
   styleUrls: ['./show-extn-issuer-alt-name.component.sass']
 })
-export class ShowExtnIssuerAltNameComponent {
+export class ShowExtnIssuerAltNameComponent implements OnChanges {
   @Input() oid = '';
   @Input() critical = false;
   @Input() value!: Uint8Array;

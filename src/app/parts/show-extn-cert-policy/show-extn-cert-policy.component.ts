@@ -8,7 +8,7 @@
 // (c) Copyright 2023 Sanjeev Premi.
 //
 
-import { Component, Input, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { SpCertificatePolicy, SpX509ExtnCertPolicy } from '@models/sp-x509-extn-cert-policy';
 
 @Component({
@@ -16,7 +16,7 @@ import { SpCertificatePolicy, SpX509ExtnCertPolicy } from '@models/sp-x509-extn-
   templateUrl: './show-extn-cert-policy.component.html',
   styleUrls: ['./show-extn-cert-policy.component.sass']
 })
-export class ShowExtnCertPolicyComponent {
+export class ShowExtnCertPolicyComponent implements OnChanges {
   @Input() oid = '';
   @Input() critical = false;
   @Input() value!: Uint8Array;

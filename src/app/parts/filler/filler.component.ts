@@ -8,14 +8,14 @@
 // (c) Copyright 2023 Sanjeev Premi.
 //
 
-import { Component, Input, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'sp-filler',
   templateUrl: './filler.component.html',
   styleUrls: ['./filler.component.sass']
 })
-export class FillerComponent {
+export class FillerComponent implements OnChanges {
   @Input() select!: string;
   @Input() clear = false;
 

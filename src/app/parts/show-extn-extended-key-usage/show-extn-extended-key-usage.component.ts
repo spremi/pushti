@@ -8,7 +8,7 @@
 // (c) Copyright 2023 Sanjeev Premi.
 //
 
-import { Component, Input, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { SpX509ExtnExtendedKeyUsage } from '@models/sp-x509-extn-extended-key-usage';
 
 @Component({
@@ -16,7 +16,7 @@ import { SpX509ExtnExtendedKeyUsage } from '@models/sp-x509-extn-extended-key-us
   templateUrl: './show-extn-extended-key-usage.component.html',
   styleUrls: ['./show-extn-extended-key-usage.component.sass']
 })
-export class ShowExtnExtendedKeyUsageComponent {
+export class ShowExtnExtendedKeyUsageComponent implements OnChanges {
   @Input() oid = '';
   @Input() critical = false;
   @Input() value!: Uint8Array;

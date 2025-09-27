@@ -8,7 +8,7 @@
 // (c) Copyright 2023 Sanjeev Premi.
 //
 
-import { Component, Input, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { SpX509Signature } from '@models/sp-x509-signature';
 
 @Component({
@@ -16,7 +16,7 @@ import { SpX509Signature } from '@models/sp-x509-signature';
   templateUrl: './show-signature.component.html',
   styleUrls: ['./show-signature.component.sass']
 })
-export class ShowSignatureComponent {
+export class ShowSignatureComponent implements OnChanges {
   @Input() value!: SpX509Signature;
   @Input() mode = '';
 

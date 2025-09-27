@@ -8,7 +8,7 @@
 // (c) Copyright 2023 Sanjeev Premi.
 //
 
-import { Component, Input, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { SpPkcs7ContentId } from '@models/sp-pkcs7-content-id';
 
 @Component({
@@ -16,7 +16,7 @@ import { SpPkcs7ContentId } from '@models/sp-pkcs7-content-id';
   templateUrl: './show-pdf-sign-container.component.html',
   styleUrls: ['./show-pdf-sign-container.component.sass']
 })
-export class ShowPdfSignContainerComponent {
+export class ShowPdfSignContainerComponent implements OnChanges {
   @Input() value: SpPkcs7ContentId | null = null;
 
   ngOnChanges(changes: SimpleChanges): void {
