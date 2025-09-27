@@ -16,10 +16,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class ToStrPipe implements PipeTransform {
 
   transform(buf: Uint8Array): string {
-    let ret = Array.from(buf)
+    return Array.from(buf)
       .map(item => String.fromCharCode(item))
       .join('');
-
-    return ret;
   }
 }
