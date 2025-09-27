@@ -11,9 +11,7 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { SpX509Entity } from '@models/sp-x509-entity';
 
-interface KeyValue {
-  [key: string]: string;
-}
+type KeyValue = Record<string, string>;
 
 @Component({
   selector: 'sp-show-entity',
