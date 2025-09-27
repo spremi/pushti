@@ -21,8 +21,6 @@ export class CacheService {
 
   certificates: string[] = [];
 
-  constructor() { }
-
   add(cert: string): void {
     this.certificates.push(cert);
   }

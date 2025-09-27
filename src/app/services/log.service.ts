@@ -18,8 +18,6 @@ export class LogService {
 
   private settingsSvc = inject(SettingsService);
 
-  constructor() { }
-
   /**
    * Write debug log string to console, if enabled.
    */

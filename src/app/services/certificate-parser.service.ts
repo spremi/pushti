@@ -56,8 +56,6 @@ export class CertificateParserService {
 
   private logSvc = inject(LogService);
 
-  constructor() { }
-
   getCertificate(): SpX509Certificate | null {
     return this.parsedCert;
   }

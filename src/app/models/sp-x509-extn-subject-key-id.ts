@@ -18,9 +18,6 @@ import { OctetString, fromBER } from 'asn1js';
 export class SpX509ExtnSubjectKeyId {
   private keyId: Uint8Array = new Uint8Array();
 
-  public constructor() {
-  }
-
   public setValue(value: Uint8Array): void {
     const keyObj = fromBER(value);
     // console.log(keyObj);

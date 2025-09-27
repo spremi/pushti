@@ -27,9 +27,6 @@ export interface SpCertificatePolicy {
 export class SpX509ExtnCertPolicy {
   private policies: SpCertificatePolicy[] = [];
 
-  public constructor() {
-  }
-
   public setValue(value: Uint8Array): void {
     const certPolicies = CertificatePolicies.fromBER(value);
 

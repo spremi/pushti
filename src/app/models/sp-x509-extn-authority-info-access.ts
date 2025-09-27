@@ -21,9 +21,6 @@ export interface SpAuthorityInfoAccess {
 export class SpX509ExtnAuthorityInfoAccess {
   private aia: SpAuthorityInfoAccess[] = [];
 
-  public constructor() {
-  }
-
   public setValue(value: Uint8Array): void {
     const infoAccess = InfoAccess.fromBER(value);
 

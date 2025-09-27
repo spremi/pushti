@@ -54,8 +54,6 @@ export class PdfParserService {
 
   private signature!: SpPkcs7Signature | null;
 
-  constructor() { }
-
   errorObserver(): Observable<string> {
     return this.error$.asObservable();
   }

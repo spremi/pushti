@@ -18,8 +18,6 @@ export class SettingsService {
   private debug = false;
   private allKeyUsages = false;
 
-  constructor() { }
-
   /**
    * Read all settings from local storage.
    */

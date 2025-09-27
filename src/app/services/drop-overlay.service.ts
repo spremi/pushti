@@ -36,9 +36,6 @@ export class DropOverlayService {
 
   private showing = false;
 
-  constructor() {
-  }
-
   public show(connectedTo: ElementRef): void {
     if (this.showing) {
       return;

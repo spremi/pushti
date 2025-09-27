@@ -15,9 +15,6 @@ export class SpX509ExtnExtendedKeyUsage {
 
   usage: string[] = [];
 
-  public constructor() {
-  }
-
   public setValue(value: Uint8Array): void {
     this.usage = [];
 

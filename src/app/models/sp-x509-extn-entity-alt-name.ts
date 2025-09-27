@@ -27,9 +27,6 @@ export class SpX509ExtnEntityAltName {
 
   private names: Uint8Array[] = [];
 
-  public constructor() {
-  }
-
   public setValue(value: Uint8Array): void {
     this.names = [];
 

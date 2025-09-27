@@ -35,9 +35,6 @@ export class SpX509ExtnKeyUsage {
   private encipherOnly = false;
   private decipherOnly = false;
 
-  public constructor() {
-  }
-
   public setValue(value: Uint8Array): void {
     //
     // Reset existing values

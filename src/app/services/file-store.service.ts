@@ -32,8 +32,6 @@ export class FileStoreService {
     'txt',
   ];
 
-  constructor() { }
-
   /**
    * Saves file contents only if parsing is successful.
    */

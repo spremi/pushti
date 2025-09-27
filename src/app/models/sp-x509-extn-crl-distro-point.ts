@@ -22,9 +22,6 @@ export class SpX509ExtnCrlDistroPoint {
 
   private urls: string[] = [];
 
-  public constructor() {
-  }
-
   public setValue(value: Uint8Array): void {
     this.urls = [];
 
