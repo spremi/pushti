@@ -246,10 +246,10 @@ export class PdfParserService {
    * Convert certificate in HEX string to DER.
    */
   private hex2ber(str: string): ArrayBuffer {
-    var buf = new ArrayBuffer(str.length / 2);
-    var bufView = new Uint8Array(buf);
+    const buf = new ArrayBuffer(str.length / 2);
+    const bufView = new Uint8Array(buf);
 
-    for (var i = 0, j = 0, strLen = str.length; i < strLen; i += 2, j++) {
+    for (let i = 0, j = 0, strLen = str.length; i < strLen; i += 2, j++) {
       const x = str[i] + str[i + 1];
       bufView[j] = parseInt(x, 16);
     }
