@@ -28,9 +28,8 @@ export class ShowPdfSignComponent implements OnChanges {
   private cacheSvc = inject(CacheService);
 
   contentType: SpPkcs7ContentId | null = null;
-  signerInfo: SpPkcs7SignerInfo[] | null = null;
-
-  certPreview: SpCertPreview[] | null = null;
+  signerInfo: SpPkcs7SignerInfo[] = [];
+  certPreview: SpCertPreview[] = [];
 
   ngOnChanges(changes: SimpleChanges): void {
     for (const attr in changes) {
@@ -46,8 +45,8 @@ export class ShowPdfSignComponent implements OnChanges {
 
   private init(): void {
     this.contentType = this.value?.getContentType() ?? null;
-    this.signerInfo = this.value?.getSignerInfo() ?? null;
-    this.certPreview = this.value?.getCertificates() ?? null;
+    this.signerInfo = this.value?.getSignerInfo() ?? [];
+    this.certPreview = this.value?.getCertificates() ?? [];
 
     //
     // Add PEM to cache.
