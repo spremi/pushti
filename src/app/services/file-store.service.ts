@@ -12,7 +12,6 @@ import { Injectable, inject } from '@angular/core';
 import { CertificateParserService } from './certificate-parser.service';
 import { PdfParserService } from './pdf-parser.service';
 import { FileMimesCert } from '@models/file-mimes';
-import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
