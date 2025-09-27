@@ -8,7 +8,7 @@
 // (c) Copyright 2023 Sanjeev Premi.
 //
 
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { PreviousRouteService } from '@services/previous-route.service';
@@ -20,9 +20,8 @@ import { PreviousRouteService } from '@services/previous-route.service';
 })
 export class LicenseComponent {
 
-  constructor(private router: Router,
-    private prevRouteSvc: PreviousRouteService) {
-  }
+  private router = inject(Router);
+  private prevRouteSvc = inject(PreviousRouteService);
 
   goBack(): void {
     const prev = this.prevRouteSvc.get();

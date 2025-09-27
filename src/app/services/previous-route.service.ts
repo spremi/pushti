@@ -8,7 +8,7 @@
 // (c) Copyright 2023 Sanjeev Premi.
 //
 
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 
 import { filter, map } from 'rxjs/operators';
@@ -17,6 +17,8 @@ import { filter, map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class PreviousRouteService {
+
+  private router = inject(Router);
 
   private prevRoute: string;
   private currRoute: string;
@@ -31,7 +33,7 @@ export class PreviousRouteService {
     '/license',
   ];
 
-  constructor(private router: Router) {
+  constructor() {
     this.currRoute = this.router.url;
     this.prevRoute = '';
 

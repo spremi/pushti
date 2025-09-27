@@ -9,7 +9,7 @@
 //
 
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 
 @Injectable({
@@ -17,12 +17,11 @@ import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 })
 export class LayoutService {
 
+  private breakObs = inject(BreakpointObserver);
+
   private columns$: BehaviorSubject<number> = new BehaviorSubject<number>(1);
 
   breakpoints$: Subscription[] = [];
-
-  constructor(private breakObs: BreakpointObserver) {
-  }
 
   public columnObserver(): Observable<number> {
     return this.columns$.asObservable();

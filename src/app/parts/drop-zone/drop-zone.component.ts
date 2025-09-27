@@ -34,6 +34,9 @@ export class DropZoneComponent implements OnInit, AfterViewInit {
   readonly PROMPT_CERT = 'DROP CERTIFICATE FILES HERE';
   readonly PROMPT_PDF = 'DROP PDF FILES HERE';
 
+  private renderer = inject(Renderer2);
+  private elem = inject(ElementRef);
+
   private fileStore = inject(FileStoreService);
   private dropOverlay = inject(DropOverlayService);
 
@@ -42,11 +45,6 @@ export class DropZoneComponent implements OnInit, AfterViewInit {
   prompt = this.PROMPT_DEFAULT;
 
   count = 5;
-
-  constructor(
-    private renderer: Renderer2,
-    private elem: ElementRef) {
-  }
 
   ngOnInit(): void {
     switch (this.mode) {

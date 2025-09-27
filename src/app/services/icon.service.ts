@@ -8,7 +8,7 @@
 // (c) Copyright 2023 Sanjeev Premi.
 //
 
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { IconInfo, IconSet } from '@models/icon-info';
@@ -97,9 +97,8 @@ export const ActionIcons: IconSet = {
 })
 export class IconService {
 
-  constructor(
-    private registry: MatIconRegistry,
-    private sanitizer: DomSanitizer) { }
+  private registry = inject(MatIconRegistry);
+  private sanitizer = inject(DomSanitizer);
 
   register(): void {
     this.registerSet(AppIcons);

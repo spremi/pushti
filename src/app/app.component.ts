@@ -12,7 +12,6 @@ import { Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild, inje
 import { DropOverlayService } from '@services/drop-overlay.service';
 import { LayoutService } from '@services/layout.service';
 
-import { PreviousRouteService } from '@services/previous-route.service';
 import { SettingsService } from '@services/settings.service';
 
 @Component({
@@ -26,6 +25,8 @@ export class AppComponent implements OnInit, OnDestroy {
   @ViewChild('main', { read: ElementRef })
   private body!: ElementRef;
 
+  private layoutSvc = inject(LayoutService);
+
   private dropOverlay = inject(DropOverlayService);
 
   private settingsSvc = inject(SettingsService);
@@ -36,11 +37,6 @@ export class AppComponent implements OnInit, OnDestroy {
     event.stopPropagation();
 
     this.showDropZone();
-  }
-
-  constructor(
-    private prevRouteSvc: PreviousRouteService,
-    private layoutSvc: LayoutService) {
   }
 
   ngOnInit(): void {
