@@ -16,7 +16,12 @@ export const SpOidPkcs: Record<string, string> = {
   '1.2.840.113549.1.6': 'PKCS #6',
   '1.2.840.113549.1.7': 'PKCS #7',
   '1.2.840.113549.1.8': 'PKCS #8',
+
   '1.2.840.113549.1.9': 'PKCS #9',
+  '1.2.840.113549.1.9.5': 'PKCS #9: Signing Time',
+
+  '1.2.840.113549.1.9.16.2.14': 'PKCS #9: S/MIME Signature Timestamp',
+
   '1.2.840.113549.1.10': 'PKCS #10: Certification Request Syntax',
   '1.2.840.113549.1.11': 'Cryptographic Token Interface Standard',
   '1.2.840.113549.1.12': 'PKCS #12',
@@ -30,3 +35,6 @@ export const SpOidPkcs: Record<string, string> = {
   '1.2.840.113549.1.7.5': '(PKCS) #7 Digested Data',
   '1.2.840.113549.1.7.6': '(PKCS) #7 Encrypted Data',
 }
+
+export const OID_PKCS_SIGN_TIMESTAMP = '1.2.840.113549.1.9.16.2.14';
+export const OID_PKCS_SIGNING_TIME = '1.2.840.113549.1.9.5';
