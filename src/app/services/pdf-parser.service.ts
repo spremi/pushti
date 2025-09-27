@@ -165,40 +165,11 @@ export class PdfParserService {
     //
     const certs = signData.certificates;
     certs?.forEach(cert => {
-      const previewCert = new SpCertPreview();
-
       if (cert instanceof Certificate) {
-        //
-        // Serial number
-        //
-        const pcSerialNum = previewCert.getSerialNumber();
-        pcSerialNum.set(cert.serialNumber.valueBlock.valueHexView);
+        const previewCert = this.getCertPreview(cert);
 
-        //
-        // Subject
-        //
-        const pcSubject = previewCert.getSubject();
-
-        cert.subject.typesAndValues.forEach(arg => {
-          pcSubject.addRDN(arg.type, arg.value.valueBlock.value);
-        });
-
-        //
-        // Issuer
-        //
-        const pcIssuer = previewCert.getIssuer();
-
-        cert.issuer.typesAndValues.forEach(arg => {
-          pcIssuer.addRDN(arg.type, arg.value.valueBlock.value);
-        });
-
-        //
-        // Raw certificate
-        //
-        previewCert.setRaw(cert.toString("base64"));
+        this.signature?.addCertificate(previewCert);
       }
-
-      this.signature?.addCertificate(previewCert);
     });
 
     //
@@ -240,6 +211,44 @@ export class PdfParserService {
     });
 
     this.logSvc.show(this.TAG, 'signature', this.signature);
+  }
+
+  /**
+   * Extract certificate information for preview.
+   */
+  private getCertPreview(cert: Certificate): SpCertPreview {
+    const previewCert = new SpCertPreview();
+
+    //
+    // Serial number
+    //
+    const pcSerialNum = previewCert.getSerialNumber();
+    pcSerialNum.set(cert.serialNumber.valueBlock.valueHexView);
+
+    //
+    // Subject
+    //
+    const pcSubject = previewCert.getSubject();
+
+    cert.subject.typesAndValues.forEach(arg => {
+      pcSubject.addRDN(arg.type, arg.value.valueBlock.value);
+    });
+
+    //
+    // Issuer
+    //
+    const pcIssuer = previewCert.getIssuer();
+
+    cert.issuer.typesAndValues.forEach(arg => {
+      pcIssuer.addRDN(arg.type, arg.value.valueBlock.value);
+    });
+
+    //
+    // Raw certificate
+    //
+    previewCert.setRaw(cert.toString("base64"));
+
+    return previewCert;
   }
 
   /**
