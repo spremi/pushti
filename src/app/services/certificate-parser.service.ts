@@ -135,7 +135,7 @@ export class CertificateParserService {
   }
 
   public parse(ber: ArrayBuffer): boolean {
-    var ret = false;
+    let ret = false;
 
     // Clear previous errors
     this.error$.next('');
@@ -362,10 +362,10 @@ export class CertificateParserService {
   }
 
   private stringToArrayBuffer(str: string): ArrayBuffer {
-    var buf = new ArrayBuffer(str.length);
-    var bufView = new Uint8Array(buf);
+    const buf = new ArrayBuffer(str.length);
+    const bufView = new Uint8Array(buf);
 
-    for (var i = 0, strLen = str.length; i < strLen; i++)
+    for (let i = 0, strLen = str.length; i < strLen; i++)
       bufView[i] = str.charCodeAt(i);
 
     return buf;
