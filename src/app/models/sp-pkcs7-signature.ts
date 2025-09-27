@@ -11,16 +11,19 @@
 import { SpCertPreview } from './sp-cert-preview';
 import { SpPkcs7ContentId } from './sp-pkcs7-content-id';
 import { SpPkcs7SignerInfo } from './sp-pkcs7-signer-info';
+import { SpPkcs9TimestampInfo } from './sp-pkcs9-timestamp-info';
 
 export class SpPkcs7Signature {
   private contentType: SpPkcs7ContentId;
   private certificates: SpCertPreview[];
   private signerInfo: SpPkcs7SignerInfo[];
+  private timestampInfo: SpPkcs9TimestampInfo | null;
 
   public constructor() {
     this.contentType = new SpPkcs7ContentId();
     this.certificates = [];
     this.signerInfo = [];
+    this.timestampInfo = null
   }
 
   public getContentType(): SpPkcs7ContentId {
@@ -45,5 +48,13 @@ export class SpPkcs7Signature {
 
   public addSignerInfo(value: SpPkcs7SignerInfo): void {
     this.signerInfo.push(value);
+  }
+
+  public getTimestampInfo(): SpPkcs9TimestampInfo | null {
+    return this.timestampInfo;
+  }
+
+  public setTimestampInfo(info: SpPkcs9TimestampInfo): void {
+    this.timestampInfo = info;
   }
 }
