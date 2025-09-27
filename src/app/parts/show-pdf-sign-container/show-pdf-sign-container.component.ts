@@ -22,10 +22,10 @@ export class ShowPdfSignContainerComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     for (const attr in changes) {
       if (attr === 'value') {
-        this.value = changes[attr].currentValue;
+        const value = changes[attr].currentValue;
 
-        if (this.value) {
-          this.value = this.value;
+        if (value) {
+          this.value = value;
         } else {
           this.value = null;
         }
