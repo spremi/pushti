@@ -30,7 +30,7 @@ export class ToHexPipe implements PipeTransform {
 
     const bytes = new Uint8Array(buf);
 
-    let blocks = new Array();
+    const blocks = [];
 
     for (let i = 0; i < buf.byteLength; i += this.BLOCK) {
       let j = i + this.BLOCK;
@@ -39,14 +39,14 @@ export class ToHexPipe implements PipeTransform {
         j = buf.byteLength;
       }
 
-      let x = bytes.slice(i, j);
-      let y = new Array(x.length);
+      const x = bytes.slice(i, j);
+      const y = new Array(x.length);
 
       for (let k = 0; k < x.length; k++) {
         y[k] = bytes[i + k].toString(16).padStart(2, '0').toUpperCase();
       }
 
-      let block = '<span class class="hex">' + y.join(':') + '</span>'
+      const block = '<span class class="hex">' + y.join(':') + '</span>'
 
       blocks.push(block);
     }
