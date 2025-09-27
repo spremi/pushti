@@ -1,1 +1,65 @@
-<p>show-pdf-sign-timestamp works!</p>
+<ng-container *ngIf="value; then ts_ok else ts_err"></ng-container>
+
+<ng-template #ts_ok>
+  <sp-box
+    title="TIMESTAMP">
+    <ng-container *ngIf="tsLocal && tsUTC">
+      <sp-box
+        title="TIME">
+        <div class="attribute">
+          <div class="attr-name">Local</div>
+          <div class="attr-value">{{ tsLocal }}</div>
+        </div>
+        <div class="attribute">
+          <div class="attr-name">UTC</div>
+          <div class="attr-value">{{ tsUTC }}</div>
+        </div>
+      </sp-box>
+    </ng-container>
+
+    <sp-box
+      title="SIGNER">
+      <ng-container *ngIf="value?.getSignerId() as signerId">
+        <sp-show-serial-num [value]="signerId.getIssuerSN()"></sp-show-serial-num>
+        <sp-show-entity title="ISSUER" [value]="signerId.getIssuer()"></sp-show-entity>
+      </ng-container>
+    </sp-box>
+
+    <sp-box
+      title="DIGEST ALGORITHM">
+      <ng-container *ngIf="value?.getDigestAlgo() as v">
+        {{ v.getName() }} ({{ v.getOid() }})
+      </ng-container>
+    </sp-box>
+
+    <sp-box
+      title="SIGN ALGORITHM">
+      <ng-container *ngIf="value?.getSignAlgo() as v">
+        {{ v.getName() }} ({{ v.getOid() }})
+      </ng-container>
+    </sp-box>
+
+    <sp-box
+      title="CERTIFICATES ({{ certPreview.length}})">
+      <div class="cert-box" *ngFor='let cert of value?.getCertificates(); let count=index;'>
+
+        <sp-box
+          title="CERTIFICATE #{{count + 1}}">
+          <sp-show-serial-num [value]="cert.getSerialNumber()"></sp-show-serial-num>
+          <sp-show-entity title="SUBJECT" [value]="cert.getSubject()"></sp-show-entity>
+          <sp-show-entity title="ISSUER" [value]="cert.getIssuer()"></sp-show-entity>
+        </sp-box>
+
+        <button mat-mini-fab color="primary"
+          title="See timestamp certificate {{count + 1}}"
+          (click)="details(certOffset + count)">
+          <mat-icon>read_more</mat-icon>
+        </button>
+      </div>
+    </sp-box>
+  </sp-box>
+</ng-template>
+
+<ng-template #ts_err>
+  No embedded available.
+</ng-template>
