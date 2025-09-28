@@ -46,10 +46,16 @@
           </button>
         </div>
       </sp-box>
+
+      <ng-container *ngIf="timestampInfo != null">
+        <sp-show-pdf-sign-timestamp
+          [value]="timestampInfo"
+          [certOffset]="certPreview.length"></sp-show-pdf-sign-timestamp>
+      </ng-container>
     </sp-box>
   </ng-container>
 
-  </ng-template>
+</ng-template>
 
 <ng-template #sign_err>
   No signature available.

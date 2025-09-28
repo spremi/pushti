@@ -14,6 +14,7 @@ import { SpCertPreview } from '@models/sp-cert-preview';
 import { SpPkcs7ContentId } from '@models/sp-pkcs7-content-id';
 import { SpPkcs7Signature } from '@models/sp-pkcs7-signature';
 import { SpPkcs7SignerInfo } from '@models/sp-pkcs7-signer-info';
+import { SpPkcs9TimestampInfo } from '@models/sp-pkcs9-timestamp-info';
 import { CacheService } from '@services/cache.service';
 
 @Component({
@@ -31,6 +32,8 @@ export class ShowPdfSignComponent implements OnChanges {
   signerInfo: SpPkcs7SignerInfo[] = [];
   certPreview: SpCertPreview[] = [];
 
+  timestampInfo: SpPkcs9TimestampInfo | null = null;
+
   ngOnChanges(changes: SimpleChanges): void {
     for (const attr in changes) {
       if (attr === 'value') {
@@ -47,6 +50,7 @@ export class ShowPdfSignComponent implements OnChanges {
     this.contentType = this.value?.getContentType() ?? null;
     this.signerInfo = this.value?.getSignerInfo() ?? [];
     this.certPreview = this.value?.getCertificates() ?? [];
+    this.timestampInfo = this.value?.getTimestampInfo() ?? null;
 
     //
     // Add PEM to cache.
