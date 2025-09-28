@@ -5,35 +5,29 @@
 
   <ng-container *ngFor='let info of signerInfo; let count=index;'>
     <sp-box
-      title="SIGNER {{count}}"
-      mode="pdf-0">
+      title="SIGNER {{count}}">
       <sp-box
-        title="VERSION"
-        mode="pdf-1">
+        title="VERSION">
         {{ info.getVersion() }}
       </sp-box>
 
       <sp-box
-        title="DIGEST ALGORITHM"
-        mode="pdf-1">
+        title="DIGEST ALGORITHM">
         <ng-container *ngIf="info.getDigestAlgo() as v">
           {{ v.getName() }} ({{ v.getOid() }})
         </ng-container>
       </sp-box>
 
       <sp-show-signature
-        [value]="info.getSignature()"
-        mode="pdf-1">
+        [value]="info.getSignature()">
       </sp-show-signature>
 
       <sp-box
-        title="CERTIFICATES ({{ certPreview.length}})"
-        mode="pdf-1">
+        title="CERTIFICATES ({{ certPreview.length}})">
         <div class="cert-box" *ngFor='let cert of certPreview; let count=index;'>
 
           <sp-box
-            title="CERTIFICATE #{{count + 1}}"
-            mode="pdf-2">
+            title="CERTIFICATE #{{count + 1}}">
             <sp-show-serial-num [value]="cert.getSerialNumber()"></sp-show-serial-num>
             <sp-show-entity title="SUBJECT" [value]="cert.getSubject()"></sp-show-entity>
             <sp-show-entity title="ISSUER" [value]="cert.getIssuer()"></sp-show-entity>
