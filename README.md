@@ -20,13 +20,15 @@ comforts of your favorite browser.
 * Decode X.509 certificates in PEM and DER files.
 * Decode signatures from PDF files.
   * Uses PDF reader embedded in browser.
-  * Quickly view certificates included in the digital signature as well.
+  * Shortcut to view all certificates included in the digital signature.
+  * Shows embedded timestamp information (if present) incl. certificates.
+    * Shortcut to view all certificates included in the timestamp.
 * Copy decoded contents as plain text.
   * Copy includes entire tree below selected node.
 * Modern responsive UI.
   * Supports drag-n-drop.
   * Supports pasting certificates from clipboard.
-* Build application as containers based on these platformsL
+* Build application as containers based on these platforms:
   * alpine
   * debian
 
